@@ -1,0 +1,42 @@
+﻿FUNCTION "FC_intToBitArr" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Data : Int;
+      low : SInt;
+      high : SInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      BitArr : Array[*] of Bool;
+   END_VAR
+
+   VAR_TEMP 
+      forIndex : SInt;
+      mask : Int;
+      arrMax : DInt;
+      arrMin : DInt;
+   END_VAR
+
+
+BEGIN
+	//IF UPPER_BOUND(ARR := #BitArr, DIM := 1) >= #arrMax AND
+	//    LOWER_BOUND(ARR := #BitArr, DIM := 1) <= #arrMin
+	//THEN
+	    #mask := 1;
+	    FOR #forIndex := #low TO #high BY 1 DO
+	        IF (#Data AND #mask) > 0 THEN
+	            #BitArr[#forIndex] := 1;
+	        ELSE
+	            #BitArr[#forIndex] := 0;
+	        END_IF;
+	        #mask := SHL(IN := #mask, N := 1);
+	    END_FOR;
+	    ENO := 1;
+	//ELSE
+	//    ENO := 0;
+	//END_IF;
+	
+	
+END_FUNCTION
+

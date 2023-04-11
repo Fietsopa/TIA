@@ -1,0 +1,36 @@
+﻿FUNCTION "FC_bitArrToInt" : Int
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      BitArr : Array[*] of Bool;
+      low : SInt;
+      high : SInt;
+   END_VAR
+
+   VAR_TEMP 
+      forIndex : SInt;
+      buffer : Int;
+      arrMax : DInt;
+      arrMin : DInt;
+   END_VAR
+
+
+BEGIN
+	
+	(*
+	IF UPPER_BOUND(ARR := #BitArr, DIM := 1) < #high OR
+	    LOWER_BOUND(ARR := #BitArr, DIM := 1) > #low
+	THEN
+	    ENO := FALSE;
+	END_IF;
+	*)
+	
+	#buffer := 0;
+	FOR #forIndex := #low TO #high BY 1 DO
+	    #buffer := #buffer + (SHL(IN := BOOL_TO_INT(#BitArr[#forIndex]), N := (#forIndex-#low)));
+	END_FOR;
+	//ENO := true;
+	#FC_bitArrToInt := #buffer;
+	
+END_FUNCTION
+

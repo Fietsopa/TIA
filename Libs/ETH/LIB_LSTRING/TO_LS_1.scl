@@ -1,0 +1,171 @@
+﻿FUNCTION "TO_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN : Variant;
+   END_VAR
+
+   VAR_IN_OUT 
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      inIsDecimal : Bool;
+      sTmp : String;
+      boTmp : Bool;
+      bTmp : Byte;
+      cTmp : Char;
+      wTmp : Word;
+      dwTmp : DWord;
+      lwTmp : LWord;
+      siTmp : SInt;
+      iTmp : Int;
+      diTmp : DInt;
+      usiTmp : USInt;
+      uiTmp : UInt;
+      udiTmp : UDInt;
+      liTmp : LInt;
+      uliTmp : ULInt;
+      rTmp : Real;
+      lrTmp : LReal;
+   END_VAR
+
+
+BEGIN
+	IF TypeOf(#IN) = t_LString THEN
+	    VariantGet(SRC := #IN,
+	               DST => #OUT);
+	    ENO := TRUE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* Convert the Input to String *)
+	CASE TypeOf(#IN) OF
+	    String:
+	        VariantGet(SRC := #IN,
+	                   DST => #sTmp);
+	        
+	    Byte:
+	        VariantGet(SRC := #IN,
+	                   DST => #bTmp);
+	        #cTmp := #bTmp;
+	        S_MOVE(IN := #cTmp,
+	               OUT => #sTmp);
+	        
+	    Char:
+	        VariantGet(SRC := #IN,
+	                   DST => #cTmp);
+	        S_MOVE(IN := #cTmp,
+	               OUT => #sTmp);
+	        
+	    Word:
+	        VariantGet(SRC := #IN,
+	                   DST => #wTmp);
+	        #sTmp :=UINT_TO_STRING(#wTmp);
+	        
+	    DWord:
+	        VariantGet(SRC := #IN,
+	                   DST => #dwTmp);
+	        #sTmp := UDINT_TO_STRING(#dwTmp);
+	        #inIsDecimal := true;
+	        
+	    LWord:
+	        VariantGet(SRC := #IN,
+	                   DST => #lwTmp);
+	        #sTmp := ULINT_TO_STRING(#lwTmp);
+	        #inIsDecimal := true;
+	        
+	    SInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #siTmp);
+	        #sTmp := SINT_TO_STRING(#siTmp);
+	        #inIsDecimal := true;
+	        
+	    Int:
+	        VariantGet(SRC := #IN,
+	                   DST => #iTmp);
+	        #sTmp := LINT_TO_STRING(#iTmp);
+	        #inIsDecimal := true;
+	        
+	    DInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #diTmp);
+	        #sTmp := DINT_TO_STRING(#diTmp);
+	        #inIsDecimal := true;
+	        
+	    USInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #usiTmp);
+	        #sTmp := USINT_TO_STRING(#usiTmp);
+	        #inIsDecimal := true;
+	        
+	    UInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #uiTmp);
+	        #sTmp := UINT_TO_STRING(#uiTmp);
+	        #inIsDecimal := true;
+	        
+	    UDInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #udiTmp);
+	        #sTmp := UDINT_TO_STRING(#udiTmp);
+	        #inIsDecimal := true;
+	        
+	    LInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #liTmp);
+	        #sTmp := LINT_TO_STRING(#liTmp);
+	        #inIsDecimal := true;
+	        
+	    ULInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #uliTmp);
+	        #sTmp := ULINT_TO_STRING(#uliTmp);
+	        #inIsDecimal := true;
+	        
+	    Real:
+	        VariantGet(SRC := #IN,
+	                   DST => #rTmp);
+	        #sTmp := REAL_TO_STRING(#rTmp);
+	        
+	    LReal:
+	        VariantGet(SRC := #IN,
+	                   DST => #lrTmp);
+	        #sTmp := LREAL_TO_STRING(#lrTmp);
+	        
+	    Bool:
+	        VariantGet(SRC := #IN,
+	                   DST => #boTmp);
+	        IF #boTmp THEN
+	            #sTmp := '1';
+	        ELSE
+	            #sTmp := '0';
+	        END_IF;
+	        
+	    ELSE
+	        (* Invalid Data Type *)
+	        ENO := FALSE;
+	        RETURN;
+	END_CASE;
+	
+	
+	(* Strip the leading '+' from a Decimal Number *)
+	IF #inIsDecimal THEN
+	    #sTmp := MID(IN := #sTmp, L := LEN(#sTmp) - 1, P := 2);
+	END_IF;
+	
+	
+	
+	(* Write the converted String to the LString *)
+	Strg_TO_Chars(Strg := #sTmp,
+	              Chars := #OUT.Data,
+	              pChars := 0,
+	              Cnt => #OUT.Len);
+	
+	IF NOT ENO THEN
+	    ENO := TRUE;
+	    RETURN;
+	END_IF;
+END_FUNCTION
+

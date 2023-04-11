@@ -1,0 +1,27 @@
+﻿FUNCTION "LS_TO_BYTES_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_OUTPUT 
+      OUT : Variant;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+
+BEGIN
+	#LS_TO_BYTES_1 := 0;
+	
+	
+	IF NOT IS_ARRAY(#OUT) OR TypeOfElements(#OUT) <> Byte THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	#LS_TO_BYTES_1 := "LS_TO_BYTES_N_1"(IN := #IN,
+	                                N := MIN(IN1 := UDINT_TO_UINT(CountOfElements(#OUT)), IN2 := #IN.Len),
+	                                OUT => #OUT);
+END_FUNCTION
+

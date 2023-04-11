@@ -1,0 +1,52 @@
+﻿FUNCTION "FIND_LS_LS_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+      IN2 : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      i : Int;
+      lenIn1 : UInt;
+      lenIn2 : UInt;
+      lookupPos : Int;
+      RetNum : Int;
+   END_VAR
+
+
+BEGIN
+	#lookupPos := 0;
+	#FIND_LS_LS_1 := 0;
+	
+	
+	(* Check for valid Lengths *)
+	#lenIn1 := #IN1.Len;
+	#lenIn2 := #IN2.Len;
+	IF #lenIn1 = 0 OR #lenIn2 = 0 OR #lenIn2 > #lenIn1 THEN
+	    RETURN;
+	END_IF;
+	
+	
+	FOR #i := 0 TO "LEN_LS_I_1"(#IN1) - 1 DO
+	    IF #IN1.Data[#i] = #IN2.Data[#lookupPos] THEN
+	        #lookupPos := #lookupPos + 1;
+	   //     IF #FIND_LS_LS = 0 THEN
+	     //       ;
+	//            #FIND_LS_LS := INT_TO_UINT(#i) + 1;
+	       // END_IF;
+	        
+	        IF #lookupPos = #lenIn2 THEN
+	            #RetNum := #i + 1; //#i - #lenIn2 + 2;
+	            #FIND_LS_LS_1 := INT_TO_UINT(#RetNum);
+	            RETURN;
+	        END_IF;
+	    ELSE
+	        #lookupPos := 0;
+	    END_IF;
+	END_FOR;
+	
+	
+	#FIND_LS_LS_1 := 0;
+END_FUNCTION
+

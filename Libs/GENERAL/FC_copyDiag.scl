@@ -1,0 +1,31 @@
+﻿FUNCTION "FC_copyDiag" : Void
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR_OUTPUT 
+      retVal : Int;
+      outPos : DInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      source_i : Variant;
+      target_o : Variant;
+   END_VAR
+
+   VAR_TEMP 
+      tempPos : DInt;
+      tempStore : Array[0..1000] of Byte;
+      tempRetval : Int;
+   END_VAR
+
+
+BEGIN
+	#tempPos := 0;
+	#tempRetval := Serialize(SRC_VARIABLE := #source_i, DEST_ARRAY => #tempStore, POS := #tempPos);
+	#retVal := #tempRetval;
+	#outPos := #tempPos;
+	#tempPos := 0;
+	#tempRetval := Deserialize(SRC_ARRAY:=#tempStore, DEST_VARIABLE=>#target_o, POS:=#tempPos);
+	
+	
+END_FUNCTION
+

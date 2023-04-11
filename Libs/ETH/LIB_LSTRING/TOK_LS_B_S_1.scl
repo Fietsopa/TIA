@@ -1,0 +1,123 @@
+﻿FUNCTION "TOK_LS_B_S_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      T : Char;
+      P : UInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      OUT : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      startPosition : UDInt;
+      position : UDInt;
+      count : UDInt;
+      endSeparator : Char;
+      result : Int;
+      remainingLen : UInt;
+   END_VAR
+
+   VAR CONSTANT 
+      SPLIT_MODE : Byte := 16#1A;
+      END_SEPARATOR : Byte := 0;
+   END_VAR
+
+
+BEGIN
+	(* 
+	Author: Christopher Gittner - Hella KgaA - W2-TSPT3
+	Version: 1.3
+	
+	Splits an LString into several tokens specified by #T, beginning at the position #P.
+	If #P is set to zero, the Last position will be used, which is usefull in consequtive calls to this function
+	Caution: This function will modify the LString ( position Len + 1 will be set to 0 if the LString is not full )
+	         because the internal SPLIT function needs an end delimiter, different than the token.
+	
+	Changelog:
+	1.0 2016-05-05 - Gittner - Initial Version
+	1.3 2016-12-21 - Gittner - Fixed many Bugs, when parsing full Strings, or if the last character is a token                      
+	*)
+	
+	#OUT := '';
+	
+	
+	(* Startpos from the Last Position if set to zero *)
+	IF #P = 0 THEN
+	    #position := "LIB_LSTRING_1".TokLastPos;
+	ELSE
+	    #position := MAX(IN1 := #P - 1, IN2 := 0);
+	END_IF;
+	
+	(* Special case, if the last character in the data is a token, *)
+	(* we need to return an empty String once, *)
+	(* since the SPLIT function does not parse the last token *)
+	IF #IN.Data[#IN.Len - 1] = #T THEN
+	    (* If String is completely Full, the SPLIT function will not return the *)
+	    (* the last position + 1, but instead the max len of the LString *)
+	    IF #position = #IN.Len OR #position = #IN.Len + 1 THEN
+	        #OUT := '';
+	        "LIB_LSTRING_1".TokLastPos := #IN.Len + 2;
+	        RETURN;
+	    END_IF;
+	END_IF;
+	
+	IF #position > #IN.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* The End of the Data is determined by the end separator if the String is not Full *)
+	#endSeparator := #END_SEPARATOR;
+	IF #IN.Len <= "DEF_MAX_LEN_LS" THEN
+	    #IN.Data[#IN.Len] := #END_SEPARATOR;
+	END_IF;
+	
+	
+	#startPosition := #position;
+	(* Try to parse the next token *)
+	ENO := SPLIT(SrcArray := #IN.Data,
+	             DstStruct := #OUT,
+	             RecSeparator := #T,
+	             EndSeparator := #endSeparator,
+	             Position := #position,
+	             Mode := #SPLIT_MODE,
+	             Count => #count) = 0;
+	
+	IF NOT ENO THEN
+	    (* Catch special case, if no tokens were parsed and we are at the last Token *)
+	    (* This happens only, if the LString is completely filled *)
+	    IF #position = #startPosition AND #IN.Len = "DEF_MAX_LEN_LS" + 1 THEN
+	        ENO := TRUE;
+	        #remainingLen := INT_TO_UINT("DEF_MAX_LEN_LS") - UDINT_TO_UINT(#startPosition) + 1;
+	        Chars_TO_Strg(Chars := #IN.Data,
+	                      Strg => #OUT,
+	                      Cnt := #remainingLen,
+	                      pChars := UDINT_TO_INT(#startPosition));
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        (* Set the new position and the count, that would normally get set by the SPLIT function *)
+	        #position := #position + #remainingLen + 1;
+	        #count := 1;
+	    ELSE
+	        RETURN;
+	    END_IF;
+	END_IF;
+	
+	IF #count > 1 THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	"LIB_LSTRING_1".TokLastPos := UDINT_TO_UINT(#position);
+	
+END_FUNCTION
+

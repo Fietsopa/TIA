@@ -1,0 +1,89 @@
+﻿FUNCTION_BLOCK "StepController"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      startStep : Int;
+      startStep_InUse : Bool;
+      stepDone : Array[0..50] of Bool;
+      resetCTU : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      stepNumber : Int;
+      stepJump : Int;
+   END_VAR
+
+   VAR 
+      temp { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Int;
+      ctu {InstructionName := 'IEC_COUNTER'; LibVersion := '1.0'} : IEC_COUNTER;
+   END_VAR
+
+   VAR_TEMP 
+      ctuTrigg : Bool;
+      ctuQ : Bool;
+      tempStep : Int;
+      tempStepNumb : Int;
+   END_VAR
+
+
+BEGIN
+	//INIT - PACUNG
+	#ctu.CTU(CU := 0,
+	         R := #resetCTU,
+	         PV := 0,
+	         Q => #ctuQ,
+	         CV => #stepNumber);
+	
+	#ctuTrigg := false;
+	
+	
+	    #tempStepNumb := #stepNumber + #startStep;
+	
+	
+	//trigg command for step counter
+	IF (#stepNumber = #temp AND (#stepDone[#tempStepNumb] = true)) THEN
+	    
+	    #ctuTrigg := true;
+	    #temp := #temp + 1;
+	    
+	END_IF;
+	
+	
+	//step reset - max
+	// IF #stepNumber > #startStep AND #startStep <> 0 THEN
+	//     #ctu.CV := 0;
+	//     #temp := 0;
+	// END_IF;
+	
+	//stepJump
+	IF #stepJump > 0 THEN
+	    #ctu.CV := #stepJump;
+	    #temp := #stepJump;
+	    #stepJump := 0;
+	END_IF;
+	
+	
+	// RESET temp value and counter
+	IF #resetCTU = true THEN
+	    #temp := 0;
+	    
+	END_IF;
+	
+	//step counter +1
+	#ctu.CTU(CU := #ctuTrigg,
+	         R := #resetCTU,
+	         PV := 0,
+	         Q => #ctuQ,
+	         CV => #stepNumber);
+	
+	IF #startStep_InUse = 1 THEN
+	    #stepNumber := #tempStepNumb;
+	END_IF;
+	
+	#ctuTrigg := false;
+	
+	
+	    
+	
+END_FUNCTION_BLOCK
+

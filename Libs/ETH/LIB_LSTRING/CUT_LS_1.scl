@@ -1,0 +1,39 @@
+﻿FUNCTION "CUT_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      L : UInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+      OUT : "t_LString";
+   END_VAR
+
+
+BEGIN
+	IF #L > #IN.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	"SUBSTR_LS_LS_2"(IN := #IN,
+	               P := 1,
+	               L := #L,
+	               OUT := #OUT);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	"REMOVE_LS_1"(IN := #IN,
+	            L := #L);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+END_FUNCTION
+

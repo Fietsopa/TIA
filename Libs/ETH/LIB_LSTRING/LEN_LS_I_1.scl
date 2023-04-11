@@ -1,0 +1,12 @@
+﻿FUNCTION "LEN_LS_I_1" : Int
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+
+BEGIN
+	#LEN_LS_I_1 := UINT_TO_INT(#IN.Len);
+END_FUNCTION
+

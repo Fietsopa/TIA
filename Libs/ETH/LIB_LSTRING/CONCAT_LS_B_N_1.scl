@@ -1,0 +1,51 @@
+﻿FUNCTION "CONCAT_LS_B_N_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN2 : Variant;
+      N : UInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      copyLen : UInt;
+   END_VAR
+
+
+BEGIN
+	#OUT := #IN1;
+	
+	
+	(* Check Parameter *)
+	IF NOT IS_ARRAY(#IN2) OR (TypeOfElements(#IN2) <> Byte AND TypeOfElements(#IN2) <> Char) THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	IF #N > INT_TO_UINT("DEF_MAX_LEN_LS") - #OUT.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* Copy the Data *)
+	ENO := MOVE_BLK_VARIANT(SRC := #IN2,
+	                        DEST => #OUT.Data,
+	                        SRC_INDEX := 0,
+	                        DEST_INDEX := #OUT.Len,
+	                        COUNT := #N) = 0;
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	(* Update Length *)
+	#OUT.Len := #OUT.Len + #N;
+	
+END_FUNCTION
+

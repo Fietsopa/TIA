@@ -1,0 +1,35 @@
+﻿FUNCTION "STREAM_READ_S_UNTIL_S_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      S : String;
+   END_VAR
+
+   VAR_OUTPUT 
+      OUT : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_Stream";
+   END_VAR
+
+   VAR_TEMP 
+      ls : "t_LString";
+   END_VAR
+
+
+BEGIN
+	"STREAM_READ_LS_UNTIL_S_1"(IN := #IN,
+	                         OUT := #ls,
+	                         S := #S);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	"LS_TO_1"(IN := #ls,
+	            OUT => #OUT);
+	
+END_FUNCTION
+

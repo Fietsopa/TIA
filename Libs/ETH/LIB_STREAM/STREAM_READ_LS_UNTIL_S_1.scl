@@ -1,0 +1,45 @@
+﻿FUNCTION "STREAM_READ_LS_UNTIL_S_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      S : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_Stream";
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      end : UInt;
+   END_VAR
+
+
+BEGIN
+	#end := "FIND_LS_S_1"(IN1 := #IN.LString, IN2 := #S);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	IF #end = 0 THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	"CUT_LS_1"(IN := #IN.LString,
+	         OUT := #OUT,
+	         L := #end - 1);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	(* Discard the End String *)
+	"REMOVE_LS_1"(IN := #IN.LString,
+	            L := INT_TO_UINT(LEN(#S)));
+END_FUNCTION
+

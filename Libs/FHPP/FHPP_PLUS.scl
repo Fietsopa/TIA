@@ -1,0 +1,76 @@
+﻿FUNCTION_BLOCK "FHPP_PLUS"
+{ S7_Optimized_Access := 'FALSE' }
+AUTHOR : FESTO
+FAMILY : 'E-DRIVE'
+VERSION : 4.1
+   VAR_INPUT 
+      O_FHPPplus1 : DInt;
+      O_FHPPplus2 : DInt;
+      O_FHPPplus3 : DInt;
+      O_FHPPplus4 : DInt;
+      O_FHPPplus5 : DInt;
+      O_FHPPplus6 : DInt;
+      O_FHPPplus7 : DInt;
+      O_FHPPplus8 : DInt;
+      O_FHPPplus9 : DInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      I_FHPPplus1 : DInt;
+      I_FHPPplus2 : DInt;
+      I_FHPPplus3 : DInt;
+      I_FHPPplus4 : DInt;
+      I_FHPPplus5 : DInt;
+      I_FHPPplus6 : DInt;
+      I_FHPPplus7 : DInt;
+      I_FHPPplus8 : DInt;
+      I_FHPPplus9 : DInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      FML_REF : "t_DT_FML_REF";
+   END_VAR
+
+
+BEGIN
+	(*############################################################
+	   FESTO AG  Co., Esslingen
+	   Copyright (c) 2015. All rights reserved.    
+	
+	   NAME OF FUNCTION BLOCK:         FHPP_PLUS
+	   VERSION NUMBER:                 V4.1
+	   COMPOSER:                       bejk
+	   
+	       
+	   -----------------------------------------------------
+	   Date        Name                Activity                                                                              
+	   06.08.2015  Benjamin Kilgus     created (V1.0)
+	   16.11.2015  Benjamin Kilgus     Option optimierter Baustein Zugriff entfernt (V1.1)
+	   29.08.2016  Benjamin Klein      version changed (V4.1)
+	############################################################*)
+	
+	// map output data
+	#FML_REF.OutData.FHPPplus[1] := #O_FHPPplus1;
+	#FML_REF.OutData.FHPPplus[2] := #O_FHPPplus2;
+	#FML_REF.OutData.FHPPplus[3] := #O_FHPPplus3;
+	#FML_REF.OutData.FHPPplus[4] := #O_FHPPplus4;
+	#FML_REF.OutData.FHPPplus[5] := #O_FHPPplus5;
+	#FML_REF.OutData.FHPPplus[6] := #O_FHPPplus6;
+	#FML_REF.OutData.FHPPplus[7] := #O_FHPPplus7;
+	#FML_REF.OutData.FHPPplus[8] := #O_FHPPplus8;
+	#FML_REF.OutData.FHPPplus[9] := #O_FHPPplus9;
+	
+	// map input data
+	#I_FHPPplus1 := #FML_REF.InData.FHPPplus[1];
+	#I_FHPPplus2 := #FML_REF.InData.FHPPplus[2];
+	#I_FHPPplus3 := #FML_REF.InData.FHPPplus[3];
+	#I_FHPPplus4 := #FML_REF.InData.FHPPplus[4];
+	#I_FHPPplus5 := #FML_REF.InData.FHPPplus[5];
+	#I_FHPPplus6 := #FML_REF.InData.FHPPplus[6];
+	#I_FHPPplus7 := #FML_REF.InData.FHPPplus[7];
+	#I_FHPPplus8 := #FML_REF.InData.FHPPplus[8];
+	#I_FHPPplus9 := #FML_REF.InData.FHPPplus[9];
+	
+	
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,38 @@
+﻿FUNCTION "REMOVE_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      L : UInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+
+BEGIN
+	IF #L > #IN.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* Optimization, if the whole String is to be cleared *)
+	IF #L = #IN.Len THEN
+	    "CLEAR_LS_1"(#IN);
+	    RETURN;
+	END_IF;
+	
+	
+	MOVE_BLK(IN := #IN.Data[#L],
+	         OUT => #IN.Data[0],
+	         COUNT := #IN.Len - #L);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	#IN.Len := #IN.Len - #L;
+END_FUNCTION
+

@@ -1,0 +1,15 @@
+﻿FUNCTION "STREAM_WRITE_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_LString";
+      OUT : "t_Stream";
+   END_VAR
+
+
+BEGIN
+	"CONCAT_LS_LS_1"(IN1 := #OUT.LString,
+	               IN2 := #IN,
+	               OUT := #OUT.LString);
+END_FUNCTION
+

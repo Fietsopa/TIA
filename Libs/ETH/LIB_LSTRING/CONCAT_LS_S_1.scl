@@ -1,0 +1,42 @@
+﻿FUNCTION "CONCAT_LS_S_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+      IN2 : String;
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      newLen : UInt;
+      l : UInt;
+   END_VAR
+
+
+BEGIN
+	#OUT := #IN1;
+	
+	
+	IF LEN(#IN2) = 0 THEN
+	    RETURN;
+	END_IF;
+	
+	IF LEN(#IN2) > INT_TO_UINT("DEF_MAX_LEN_LS") - #OUT.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	Strg_TO_Chars(Strg := #IN2,
+	              Chars := #OUT.Data,
+	              Cnt => #newLen,
+	              pChars := #OUT.Len);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	#OUT.Len := #OUT.Len + #newLen;
+END_FUNCTION
+

@@ -1,0 +1,12 @@
+﻿FUNCTION "IOSTREAM_IS_GOOD_1" : Bool
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_IOStream";
+   END_VAR
+
+
+BEGIN
+	#IOSTREAM_IS_GOOD_1 := "STREAM_IS_GOOD_1"(#IN.I) AND "STREAM_IS_GOOD_1"(#IN.O);
+END_FUNCTION
+

@@ -1,0 +1,38 @@
+﻿FUNCTION "FC_EatSpc_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Src : String;
+   END_VAR
+
+   VAR_OUTPUT 
+      Dest : String;
+   END_VAR
+
+   VAR_TEMP 
+      Width : Int;
+      Pos : Int;
+      Index : UInt;
+      Start : DInt;
+      InsChar : String;
+   END_VAR
+
+
+BEGIN
+	
+	#Width := LEN(#Src);
+	#Dest := '';
+	#Index := 0;
+	#Start := 0;
+	
+	
+	FOR #Pos := 1 TO #Width DO
+	    IF #Src[#Pos] <> ' ' THEN
+	        #InsChar := CHAR_TO_STRING(#Src[#Pos]);
+	        #Dest := CONCAT(IN1:=#Dest, IN2:=#InsChar );
+	    END_IF;
+	END_FOR;
+	
+	
+END_FUNCTION
+

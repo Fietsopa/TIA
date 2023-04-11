@@ -1,0 +1,41 @@
+﻿FUNCTION "SUBSTR_LS_LS_2" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      P : UInt;
+      L : UInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+      OUT : "t_LString";
+   END_VAR
+
+
+BEGIN
+	(* Prevent Warning Substr_LS_LS not initialized *)
+	#OUT.Len := 0;
+	"CLEAR_LS_1"(#OUT);
+	
+	IF NOT ENO OR #L = 0 THEN
+	    RETURN;
+	END_IF;
+	
+	
+	IF #P > #IN.Len OR #P + #L > #IN.Len + 1 THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	MOVE_BLK(IN := #IN.Data[#P - 1],
+	         OUT => #OUT.Data[0],
+	         COUNT := #L);
+	
+	ENO := TRUE;
+	
+	
+	#OUT.Len := #L;
+	
+END_FUNCTION
+

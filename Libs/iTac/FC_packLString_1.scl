@@ -1,0 +1,23 @@
+﻿FUNCTION "FC_packLString_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      header : String;
+      footer : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      in_data : "t_LString";
+      out_data : "t_LString";
+   END_VAR
+
+
+BEGIN
+	// add header
+	"S_TO_LS_1"(IN:=#header, OUT:=#out_data);
+	// copy data
+	"CONCAT_LS_LS_1"(IN1:=#out_data, IN2:=#in_data, OUT:=#out_data);
+	// add footer
+	"CONCAT_LS_S_1"(IN1 := #out_data, IN2 := #footer, OUT := #out_data);
+END_FUNCTION
+

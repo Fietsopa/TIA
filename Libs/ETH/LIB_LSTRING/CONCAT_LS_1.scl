@@ -1,0 +1,70 @@
+﻿FUNCTION "CONCAT_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN2 : Variant;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      inIsDecimal : Bool;
+      boTmp : Bool;
+      bTmp : Byte;
+      cTmp : Char;
+      wTmp : Word;
+      dwTmp : DWord;
+      lwTmp : LWord;
+      siTmp : SInt;
+      iTmp : Int;
+      diTmp : DInt;
+      usiTmp : USInt;
+      uiTmp : UInt;
+      udiTmp : UDInt;
+      liTmp : LInt;
+      uliTmp : ULInt;
+      rTmp : Real;
+      lrTmp : LReal;
+      sTmp : String;
+      copyLen : UInt;
+   END_VAR
+
+
+BEGIN
+	#OUT := #IN1;
+	
+	#sTmp := "TO_S_1"(#IN2);
+	
+	(* Check Length *)
+	#copyLen := INT_TO_UINT(LEN(#sTmp));
+	
+	IF #copyLen = 0 THEN
+	    ENO := TRUE;
+	    RETURN;
+	END_IF;
+	
+	IF #copyLen > INT_TO_UINT("DEF_MAX_LEN_LS") - #OUT.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* Copy the Data *)
+	Strg_TO_Chars(Strg := #sTmp,
+	              Chars := #OUT.Data,
+	              pChars := #OUT.Len,
+	              Cnt => #copyLen);
+	
+	
+	(* Set new Length *)
+	#OUT.Len := #OUT.Len + #copyLen;
+	
+	IF NOT ENO THEN
+	    ENO := TRUE;
+	    RETURN;
+	END_IF;
+END_FUNCTION
+

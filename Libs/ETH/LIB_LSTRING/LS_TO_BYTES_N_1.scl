@@ -1,0 +1,45 @@
+﻿FUNCTION "LS_TO_BYTES_N_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      N : UInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      OUT : Variant;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      readLen : UInt;
+   END_VAR
+
+
+BEGIN
+	#LS_TO_BYTES_N_1 := 0;
+	
+	
+	IF NOT IS_ARRAY(#OUT) OR TypeOfElements(#OUT) <> Byte THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	#readLen := MIN(IN1 := #N, IN2 := #IN.Len);
+	
+	
+	IF MOVE_BLK_VARIANT(SRC := #IN.Data,
+	                        DEST => #OUT,
+	                        SRC_INDEX := 0,
+	                        DEST_INDEX := 0,
+	                        COUNT := #readLen) <> 0 THEN
+	    RETURN;
+	END_IF;
+	
+	
+	#LS_TO_BYTES_N_1 := #readLen;
+END_FUNCTION
+

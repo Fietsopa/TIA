@@ -1,0 +1,20 @@
+﻿FUNCTION "S_TO_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      OUT : "t_LString";
+   END_VAR
+
+
+BEGIN
+	Strg_TO_Chars(Strg := #IN,
+	              Cnt => #OUT.Len,
+	              pChars := 0,
+	              Chars := #OUT.Data);
+	
+END_FUNCTION
+

@@ -1,0 +1,34 @@
+﻿FUNCTION "LS_TO_S_1" : String
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_LString";
+   END_VAR
+
+
+BEGIN
+	(*
+	Author: Christopher Gittner - Hella KgaA - W2-TSPT3
+	Version: 1.2
+	
+	Converts a LString to String.
+	The difference to the normal "LS_TO" function is, that if the LString
+	does not fit into the String, the maximum String length is read
+	
+	Changelog:
+	1.3 2016-12-21 - Gittner - Initial Version
+	*)
+	
+	#LS_TO_S_1 := '';
+	
+	IF "LEN_LS_1"(IN := #IN) = 0 THEN
+	    RETURN;
+	END_IF;
+	
+	Chars_TO_Strg(Chars := #IN.Data,
+	              pChars := 0,
+	              Cnt := MIN(IN1 := #IN.Len, IN2 := INT_TO_UINT(MAX_LEN(#LS_TO_S_1))),
+	              Strg => #LS_TO_S_1);
+	
+END_FUNCTION
+

@@ -1,0 +1,62 @@
+﻿FUNCTION "EXT_DL_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Delim : Char;
+      Number : UInt;
+      Src : "t_LString";
+   END_VAR
+
+   VAR_OUTPUT 
+      ResPart : String;
+   END_VAR
+
+   VAR_TEMP 
+      lenIn : UInt;
+      from : UInt;
+      till : UInt;
+      Count : UInt;
+   END_VAR
+
+
+BEGIN
+	
+	(* Extract n-th part of delimited string *)
+	
+	#ResPart := '';
+	
+	(* Check for valid Lengths *)
+	#lenIn := #Src.Len;
+	
+	IF #lenIn = 0 OR #Number = 0 THEN
+	    RETURN;
+	END_IF;
+	
+	IF #Number = 1 THEN  //first occureance
+	    #from := 0;
+	    #till := "POS_LS_1"(Character := #Delim, Number := 1, Src := #Src);
+	    IF #till = 0 THEN
+	        #till := #lenIn; //no delimiters, whole string returned
+	    END_IF;
+	ELSE
+	    #from := "POS_LS_1"(Character := #Delim, Number := #Number-1, Src := #Src)+1;
+	    #till := "POS_LS_1"(Character := #Delim, Number := #Number, Src := #Src);
+	    IF (#till = 0 AND #from > 0) THEN  //last occureance
+	        #till := #lenIn;
+	    END_IF;
+	END_IF;
+	
+	#Count := #till - #from;
+	
+	IF (#till <= #from OR #Count > 255) THEN
+	    RETURN;
+	END_IF;
+	
+	
+	Chars_TO_Strg(Chars := #Src.Data,
+	              pChars := #from,
+	              Cnt := #Count,
+	              Strg => #ResPart);
+	
+END_FUNCTION
+

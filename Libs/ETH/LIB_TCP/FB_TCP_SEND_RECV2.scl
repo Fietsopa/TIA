@@ -1,0 +1,283 @@
+﻿FUNCTION_BLOCK "FB_TCP_SEND_RECV2"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      CONNECT : Bool := TRUE;
+      INIT : Bool;
+      HW_ID : HW_ANY := 1;
+      ID : CONN_OUC;
+      IP_PORT : "t_IpPort2";
+   END_VAR
+
+   VAR_OUTPUT 
+      CONNECTED : Bool;
+      ERROR : Bool;
+      ERROR_state : USInt;
+      ConnDiagError : Word;
+      ConnRCVError : Word;
+      ConnSENDError : Word;
+   END_VAR
+
+   VAR_IN_OUT 
+      IOSTREAM : "t_IOStream";
+   END_VAR
+
+   VAR 
+      TSEND_C {InstructionName := 'TSEND_C'; LibVersion := '2.1'} : TSEND_C;
+      conReset : Bool;
+      conState : Byte;
+      diagBusy : Bool;
+      diagError : Bool;
+      diagDone : Bool;
+      diagStatus : Word;
+      recvBuffer : "t_LString";
+      recvBusy : Bool;
+      recvDone : Bool;
+      recvError : Bool;
+      recvStatus : Word;
+      lastRecvError : Word;
+      sendBuffer : "t_LString";
+      sendBusy : Bool;
+      sendDone : Bool;
+      sendError : Bool;
+      lastSendError : Word;
+      sendStatus : Word;
+      connectParam {InstructionName := 'TCON_IP_v4'; LibVersion := '1.0'} : TCON_IP_v4;
+      T_DIAG {InstructionName := 'T_DIAG'; LibVersion := '1.1'} : T_DIAG;
+      ipPortOld : "t_IpPort2";
+      TRCV_C {InstructionName := 'TRCV_C'; LibVersion := '2.1'} : TRCV_C;
+      TSEND {InstructionName := 'TSEND'; LibVersion := '3.0'} : TSEND;
+      T1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      iTDISCON {InstructionName := 'TDISCON'; LibVersion := '2.1'} : TDISCON;
+      tReset : Bool;
+      T2 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+   END_VAR
+
+   VAR_TEMP 
+      tmpDiagResult {InstructionName := 'TDiag_StatusExt'; LibVersion := '1.0'} : TDiag_StatusExt;
+      recvLen : UDInt;
+      tmpEno : Bool;
+   END_VAR
+
+   VAR CONSTANT 
+      CON_TYPE_TCP : Byte := 16#0b;
+      CON_TYPE_UDP : Byte := 16#13;
+      CON_STATE_UNKNOWN : Byte := 16#0;
+      CON_STATE_DISCONNECTED : Byte := 16#1;
+      CON_STATE_CONNECTING : Byte := 16#2;
+      CON_STATE_WAIT_FOR_CONNECTION : Byte := 16#3;
+      CON_STATE_CONNECTED : Byte := 16#4;
+      CON_STATE_DISCONNECTING : Byte := 16#5;
+   END_VAR
+
+
+BEGIN
+	(* 
+	Author: Christopher Gittner - Hella KgaA - W2-TSPT3
+	Version: 1.1
+	
+	Manages a TCP Connection either as Server, or Client
+	
+	The TCP connection is established as Active connection, if either of the
+	IP Parameters is set to non zero
+	
+	Changelog:
+	1.0 2016-05-05 - Gittner - Initial Version
+	1.1 2016-11-28 - Gittner - Fixed a typo, wehre the IP_4 Part was checked for "equal" 0 instead of "not equal" 
+	                         - Fixed Jittering of ENO due to connection errors
+	                         - Added Check for Port equal to zero
+	                         - Set Default Value of HW_ID from w#16#1 to 1, to prevent errors on update to V14
+	2.0 2018-02-05 - Faltus - t_IpPort - structure change (mirror of the system function)
+	                        - communication reset after server disconnection
+	*)
+	
+	(* Check for Parameter Error *)
+	(* Port has to be set *)
+	IF NOT #INIT AND #CONNECT AND #IP_PORT."Port" = 0 THEN
+	    ENO := FALSE;
+	END_IF;
+	
+	
+	(* Init if "Init" Input high or if the IP or Port Changed *)
+	IF #INIT 
+	    OR #IP_PORT.Ip[0] <> #ipPortOld.Ip[0]
+	    OR #IP_PORT.Ip[1] <> #ipPortOld.Ip[1]
+	    OR #IP_PORT.Ip[2] <> #ipPortOld.Ip[2]
+	    OR #IP_PORT.Ip[3] <> #ipPortOld.Ip[3]
+	    OR #IP_PORT."Port" <> #ipPortOld."Port"
+	THEN
+	    #conReset := TRUE;
+	    #conState := #CON_STATE_UNKNOWN;
+	    "CLEAR_LS"(#sendBuffer);
+	    "IOSTREAM_CLEAR"(#IOSTREAM);
+	END_IF;
+	
+	
+	(* Set Connection Parameters *)
+	#connectParam.InterfaceId := #HW_ID;
+	
+	#connectParam.ID := #ID;
+	
+	#connectParam.ConnectionType := #CON_TYPE_TCP;
+	
+	#connectParam.ActiveEstablished :=
+	#IP_PORT.Ip[0] <> 0
+	OR #IP_PORT.Ip[1] <> 0
+	OR #IP_PORT.Ip[2] <> 0
+	OR #IP_PORT.Ip[3] <> 0;
+	
+	#connectParam.RemoteAddress.ADDR[1] := #IP_PORT.Ip[0];
+	#connectParam.RemoteAddress.ADDR[2] := #IP_PORT.Ip[1];
+	#connectParam.RemoteAddress.ADDR[3] := #IP_PORT.Ip[2];
+	#connectParam.RemoteAddress.ADDR[4] := #IP_PORT.Ip[3];
+	
+	IF #connectParam.ActiveEstablished THEN
+	    #connectParam.RemotePort := #IP_PORT."Port";
+	    #connectParam.LocalPort := 0;
+	ELSE
+	    #connectParam.RemotePort := 0;
+	    #connectParam.LocalPort := #IP_PORT."Port";
+	END_IF;
+	
+	
+	#tmpEno := ENO;
+	(* Connection Status *)
+	#T_DIAG(REQ := NOT #diagBusy AND NOT #diagError AND NOT #diagDone,
+	        ID := #connectParam.ID,
+	        DONE => #diagDone,
+	        BUSY => #diagBusy,
+	        ERROR => #diagError,
+	        STATUS => #diagStatus,
+	        RESULT := #tmpDiagResult);
+	
+	IF #diagError = true THEN
+	    #ConnDiagError := #diagStatus;
+	END_IF;
+	
+	
+	(* Diag Results Valid *)
+	IF (#diagDone AND NOT #diagError AND #diagStatus = w#16#0) THEN
+	    #conState := #tmpDiagResult.State;
+	    #conReset := false;
+	END_IF;
+	(* Reset ENO if Connection has been Reset *)
+	IF #diagError AND #diagStatus = w#16#80A3 THEN
+	    ENO := #tmpEno;
+	END_IF;
+	
+	(* If the Connection is disconnected, for example after startup, *)
+	(* T_DIAG will always return Error w#16#80A3 (ID is a reference to a non existent connection) *)
+	IF (#diagError AND #diagStatus = w#16#80a3) THEN
+	    #conState := #CON_STATE_DISCONNECTED;
+	END_IF;
+	
+	#tmpEno := ENO;
+	#TRCV_C(EN_R := "STREAM_IS_GOOD"(#IOSTREAM.I),
+	        CONT := #CONNECT AND NOT #conReset,
+	        LEN := "MAX_LEN_LS"(),
+	        ADHOC := TRUE,
+	        DONE => #recvDone,
+	        BUSY => #recvBusy,
+	        ERROR => #recvError,
+	        STATUS => #recvStatus,
+	        RCVD_LEN => #recvLen,
+	        CONNECT := #connectParam,
+	        DATA := #recvBuffer.Data,
+	        COM_RST := #conReset);
+	
+	IF #recvError = true THEN
+	    #ConnRCVError := #recvStatus;
+	END_IF;
+	
+	(* Reset ENO if remote is rejecting the connection *)
+	IF #recvError AND #recvStatus = w#16#80C5 THEN
+	    ENO := #tmpEno;
+	END_IF;
+	
+	IF #recvError THEN
+	    #conReset := true;
+	    
+	    (* Save the last Receive Status for Debugging *)
+	    #lastRecvError := #recvStatus;
+	END_IF;
+	
+	
+	IF #recvDone THEN
+	    #recvBuffer.Len := UDINT_TO_UINT(#recvLen);
+	    "STREAM_WRITE_LS"(IN := #recvBuffer,
+	                      OUT := #IOSTREAM.I);
+	    "CLEAR_LS"(#recvBuffer);
+	END_IF;
+	
+	
+	(* Start Send *)
+	IF #conState = #CON_STATE_CONNECTED
+	    AND "LEN_LS"(#sendBuffer) = 0
+	    AND "STREAM_HAS_DATA"(#IOSTREAM.O)
+	THEN
+	    "STREAM_READ_LS"(IN := #IOSTREAM.O,
+	                     OUT := #sendBuffer);
+	END_IF;
+	
+	
+	#TSEND(REQ := "STREAM_IS_GOOD"(#IOSTREAM.O) AND #sendBuffer.Len > 0 AND NOT #sendDone AND NOT #sendError,
+	       ID := #ID,
+	       LEN := #sendBuffer.Len,
+	       DONE => #sendDone,
+	       BUSY => #sendBusy,
+	       ERROR => #sendError,
+	       STATUS => #sendStatus,
+	       DATA := #sendBuffer.Data);
+	
+	IF #sendError = true THEN
+	    #ConnSENDError := #sendStatus;
+	END_IF;
+	
+	IF #sendError THEN
+	    #conReset := true;
+	    
+	    (* Save the last Send Status for Debugging *)
+	    #lastSendError := #sendStatus;
+	END_IF;
+	
+	
+	(* Send Done (Either success or Failed) *)
+	IF #sendDone OR #sendError THEN
+	    "CLEAR_LS"(#sendBuffer);
+	END_IF;
+	
+	
+	(* IOStream is good *)
+	#IOSTREAM.I.Good := #conState = #CON_STATE_CONNECTED AND NOT #conReset;
+	#IOSTREAM.O.Good := #conState = #CON_STATE_CONNECTED AND NOT #conReset;
+	
+	
+	(* Save old Data *)
+	#ipPortOld := #IP_PORT;
+	
+	
+	(* Connection has been reset *)
+	IF #conState = #CON_STATE_DISCONNECTED THEN
+	    #conReset := false;
+	END_IF;
+	
+	
+	(* Connected *)
+	#CONNECTED := "IOSTREAM_IS_GOOD"(#IOSTREAM);
+	
+	(* Disconnected - reset connection*)
+	#T1(IN := #CONNECT AND NOT (#CONNECTED) AND NOT(#tReset),
+	    PT := T#8s);
+	
+	#tReset := #T1.Q;
+	
+	#iTDISCON(REQ:=#T1.Q,
+	          ID:=#ID);
+	
+	#T2(IN:=#CONNECT AND NOT (#CONNECTED),
+	    PT:=T#30s);
+	
+	#ERROR := #T2.Q;
+	
+END_FUNCTION_BLOCK
+

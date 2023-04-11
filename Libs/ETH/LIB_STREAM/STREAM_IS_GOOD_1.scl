@@ -1,0 +1,12 @@
+﻿FUNCTION "STREAM_IS_GOOD_1" : Bool
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_Stream";
+   END_VAR
+
+
+BEGIN
+	#STREAM_IS_GOOD_1 := #IN.Good;
+END_FUNCTION
+

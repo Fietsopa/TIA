@@ -1,0 +1,44 @@
+﻿FUNCTION "STREAM_READ_BYTES_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_OUTPUT 
+      OUT : Variant;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_Stream";
+   END_VAR
+
+   VAR_TEMP 
+      length : UInt;
+   END_VAR
+
+
+BEGIN
+	#STREAM_READ_BYTES_1 := 0;
+	
+	
+	IF NOT "STREAM_HAS_DATA_1"(#IN) THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	#length := "LS_TO_BYTES_1"(IN := #IN.LString, OUT => #OUT);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	"REMOVE_LS_1"(IN := #IN.LString,
+	            L := #length);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	#STREAM_READ_BYTES_1 := #length;
+END_FUNCTION
+

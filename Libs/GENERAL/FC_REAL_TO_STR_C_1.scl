@@ -1,0 +1,33 @@
+﻿FUNCTION "FC_REAL_TO_STR_C_1" : String
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+//Conversion of REAL number to string, with COMMA delimiter
+   VAR_INPUT 
+      in : Real;
+      precision : USInt;
+   END_VAR
+
+   VAR_TEMP 
+      tempString : String;
+   END_VAR
+
+   VAR CONSTANT 
+      defSize : USInt := 16;
+      defFormat : USInt := 1;   // 0=(-/.) 1=(-/,)
+      defP : USInt := 16;
+   END_VAR
+
+
+BEGIN
+	VAL_STRG(IN     := #in,
+	         SIZE   := #defSize,
+	         PREC   := #precision,
+	         FORMAT := #defFormat,
+	         P      := #defP,
+	         OUT    => #tempString);
+	 
+	#FC_REAL_TO_STR_C_1 := "FC_STR_DELSPACE_1"(IN := #tempString);
+	                 
+	        
+END_FUNCTION
+

@@ -1,0 +1,12 @@
+﻿FUNCTION "STREAM_HAS_DATA_1" : Bool
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_Stream";
+   END_VAR
+
+
+BEGIN
+	#STREAM_HAS_DATA_1 := #IN.LString.Len > 0;
+END_FUNCTION
+

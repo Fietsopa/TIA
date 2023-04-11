@@ -1,0 +1,31 @@
+﻿FUNCTION "FC_STR_DELSPACE_1" : String
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN : String;
+   END_VAR
+
+   VAR_TEMP 
+      "char" : String;
+      tempString : String;
+      condition : Bool;
+   END_VAR
+
+
+BEGIN
+	#condition := TRUE;
+	#tempString := #IN;
+	
+	WHILE #condition DO
+	    #char := LEFT(IN := #tempString, L := 1);
+	    IF (#char=' ') THEN
+	        #tempString:=DELETE(IN:=#tempString, L:=1, P:=1);
+	    ELSE
+	        #condition := FALSE;
+	    END_IF;
+	END_WHILE;
+	
+	#FC_STR_DELSPACE_1 := #tempString;
+	
+END_FUNCTION
+

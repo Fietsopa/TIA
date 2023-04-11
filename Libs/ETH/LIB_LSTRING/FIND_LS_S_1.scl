@@ -1,0 +1,24 @@
+﻿FUNCTION "FIND_LS_S_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN2 : String;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      str : "t_LString";
+   END_VAR
+
+
+BEGIN
+	"TO_LS_1"(IN := #IN2,
+	        OUT := #str);
+	
+	
+	#FIND_LS_S_1 := "FIND_LS_LS_1"(IN1 := #IN1, IN2 := #str);
+END_FUNCTION
+

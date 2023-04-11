@@ -1,0 +1,186 @@
+﻿FUNCTION "S_TO_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN : String;
+   END_VAR
+
+   VAR_OUTPUT 
+      OUT : Variant;
+   END_VAR
+
+   VAR_TEMP 
+      boTmp : Bool;
+      bTmp : Byte;
+      cTmp : Char;
+      wTmp : Word;
+      dwTmp : DWord;
+      lwTmp : LWord;
+      siTmp : SInt;
+      iTmp : Int;
+      diTmp : DInt;
+      usiTmp : USInt;
+      uiTmp : UInt;
+      udiTmp : UDInt;
+      liTmp : LInt;
+      uliTmp : ULInt;
+      rTmp : Real;
+      lrTmp : LReal;
+   END_VAR
+
+
+BEGIN
+	(* Check for conversion String, in which case we simply write the String *)
+	IF TypeOf(#OUT) = String THEN
+	    VariantPut(SRC := #IN,
+	               DST := #OUT);
+	    RETURN;
+	END_IF;
+	
+	
+	(* Convert the String to the appropriate type *)
+	CASE TypeOf(#OUT) OF
+	    Byte:
+	        #bTmp := STRING_TO_CHAR(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #bTmp,
+	                   DST := #OUT);
+	        
+	    Char:
+	        #cTmp := STRING_TO_CHAR(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #cTmp,
+	                   DST := #OUT);
+	        
+	    Word:
+	        #wTmp := STRING_TO_UINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #wTmp,
+	                   DST := #OUT);
+	        
+	    DWord:
+	        #dwTmp := STRING_TO_UDINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #dwTmp,
+	                   DST := #OUT);
+	        
+	    LWord:
+	        #lwTmp := STRING_TO_ULINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #lwTmp,
+	                   DST := #OUT);
+	        
+	    SInt:
+	        #siTmp := STRING_TO_SINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #siTmp,
+	                   DST := #OUT);
+	        
+	    Int:
+	        #iTmp := STRING_TO_INT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #iTmp,
+	                   DST := #OUT);
+	        
+	    DInt:
+	        #diTmp := STRING_TO_DINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #diTmp,
+	                   DST := #OUT);
+	        
+	    USInt:
+	        #usiTmp := STRING_TO_USINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #usiTmp,
+	                   DST := #OUT);
+	        
+	    UInt:
+	        #uiTmp := STRING_TO_UINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #uiTmp,
+	                   DST := #OUT);
+	        
+	    UDInt:
+	        #udiTmp := STRING_TO_UDINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #udiTmp,
+	                   DST := #OUT);
+	        
+	    LInt:
+	        #liTmp := STRING_TO_LINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #liTmp,
+	                   DST := #OUT);
+	        
+	    ULInt:
+	        #uliTmp := STRING_TO_ULINT(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #uliTmp,
+	                   DST := #OUT);
+	        
+	    Real:
+	        #rTmp := STRING_TO_REAL(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #rTmp,
+	                   DST := #OUT);
+	        
+	    LReal:
+	        #lrTmp := STRING_TO_LREAL(#IN);
+	        IF NOT ENO THEN
+	            RETURN;
+	        END_IF;
+	        
+	        VariantPut(SRC := #lrTmp,
+	                   DST := #OUT);
+	        
+	    ELSE
+	        (* Invalid Datatype *)
+	        ENO := FALSE;
+	        RETURN;
+	        
+	END_CASE;
+	
+END_FUNCTION
+

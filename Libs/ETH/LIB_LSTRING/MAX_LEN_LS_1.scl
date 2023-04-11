@@ -1,0 +1,10 @@
+﻿FUNCTION "MAX_LEN_LS_1" : UInt
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	#MAX_LEN_LS_1 := INT_TO_UINT("DEF_MAX_LEN_LS");
+	
+	RETURN;
+END_FUNCTION
+

@@ -1,0 +1,41 @@
+﻿FUNCTION "CONCAT_LS_LS_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN1 : "t_LString";
+      IN2 : "t_LString";
+      OUT : "t_LString";
+   END_VAR
+
+
+BEGIN
+	#OUT := #IN1;
+	
+	
+	(* Check Parameter *)
+	IF #IN2.Len > INT_TO_UINT("DEF_MAX_LEN_LS") - #IN1.Len THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	IF #IN2.Len = 0 THEN
+	    RETURN;
+	END_IF;
+	
+	
+	(* Copy the Data *)
+	IF MOVE_BLK_VARIANT(SRC := #IN2.Data,
+	                        DEST => #OUT.Data,
+	                        SRC_INDEX := 0,
+	                        DEST_INDEX := #OUT.Len,
+	                        COUNT := #IN2.Len) <> 0 THEN
+	    ENO := FALSE;
+	    RETURN;
+	END_IF;
+	
+	
+	(* Update the Length *)
+	#OUT.Len := #OUT.Len + #IN2.Len;
+	
+END_FUNCTION
+

@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-04-11T09:34:01.7220227Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>SINAMICS Startdrive Advanced</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G130, G150, S120, S150, SINAMICS MV, S210</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G110M, G120, G120C, G120D, G120P, G115D</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC UA Professional</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="header" Datatype="String" Accessibility="Public" />
+    <Member Name="footer" Datatype="String" Accessibility="Public" />
+  </Section>
+  <Section Name="Output" />
+  <Section Name="InOut">
+    <Member Name="IN" Datatype="&quot;t_LString&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="Len" Datatype="UInt" />
+          <Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="OUT" Datatype="&quot;t_LString&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="Len" Datatype="UInt" />
+          <Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+  </Section>
+  <Section Name="Temp">
+    <Member Name="headerPos" Datatype="UInt" />
+    <Member Name="footerPos" Datatype="UInt" />
+    <Member Name="ftrLen" Datatype="UInt" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>FC_controlReadData_1</Name>
+      <Number>19</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>sl-SI</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="PredefinedVariable" UId="21">
+    <PredefinedVariable Name="ENO" UId="22" />
+  </Access>
+  <Blank Num="1" UId="23" />
+  <Token Text=":=" UId="24" />
+  <Blank Num="1" UId="25" />
+  <Access Scope="LiteralConstant" UId="26">
+    <Constant UId="27">
+      <ConstantValue UId="29">false</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="30" />
+  <NewLine Num="1" UId="31" />
+  <Access Scope="LocalVariable" UId="32">
+    <Symbol UId="33">
+      <Component Name="ftrLen" UId="34" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="35" />
+  <Token Text=":=" UId="36" />
+  <Blank Num="1" UId="37" />
+  <Access Scope="Call" UId="38">
+    <Instruction Name="INT_TO_UINT" UId="39">
+      <Token Text="(" UId="40" />
+      <NamelessParameter UId="41">
+        <Access Scope="Call" UId="42">
+          <Instruction Name="LEN" UId="43">
+            <Token Text="(" UId="44" />
+            <NamelessParameter UId="45">
+              <Access Scope="LocalVariable" UId="46">
+                <Symbol UId="47">
+                  <Component Name="footer" UId="48" />
+                </Symbol>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="50" />
+          </Instruction>
+        </Access>
+      </NamelessParameter>
+      <Token Text=")" UId="52" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="53" />
+  <NewLine Num="2" UId="54" />
+  <Access Scope="LocalVariable" UId="55">
+    <Symbol UId="56">
+      <Component Name="headerPos" UId="57" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="58" />
+  <Access Scope="Call" UId="59">
+    <CallInfo UId="60" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="62">
+        <Component Name="FIND_LS_S_1" UId="61" />
+      </Instance>
+      <Token Text="(" UId="63" />
+      <Parameter Name="IN1" UId="64">
+        <Token Text=":=" UId="65" />
+        <Access Scope="LocalVariable" UId="66">
+          <Symbol UId="67">
+            <Component Name="IN" UId="68" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="69" />
+      <Blank Num="1" UId="70" />
+      <Parameter Name="IN2" UId="71">
+        <Token Text=":=" UId="72" />
+        <Access Scope="LocalVariable" UId="73">
+          <Symbol UId="74">
+            <Component Name="header" UId="75" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="77" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="78" />
+  <NewLine Num="2" UId="79" />
+  <Token Text="IF" UId="80" />
+  <Blank Num="1" UId="81" />
+  <Access Scope="LocalVariable" UId="82">
+    <Symbol UId="83">
+      <Component Name="headerPos" UId="84" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="85" />
+  <Token Text="&gt;" UId="86" />
+  <Blank Num="1" UId="87" />
+  <Access Scope="LiteralConstant" UId="88">
+    <Constant UId="89">
+      <ConstantValue UId="91">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="92" />
+  <Token Text="THEN" UId="93" />
+  <NewLine Num="1" UId="94" />
+  <Blank Num="4" UId="95" />
+  <Access Scope="Call" UId="96">
+    <CallInfo UId="97" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="99">
+        <Component Name="SUBSTR_LS_LS_2" UId="98" />
+      </Instance>
+      <Token Text="(" UId="100" />
+      <Parameter Name="IN" UId="101">
+        <Blank Num="1" UId="102" />
+        <Token Text=":=" UId="103" />
+        <Blank Num="1" UId="104" />
+        <Access Scope="LocalVariable" UId="105">
+          <Symbol UId="106">
+            <Component Name="IN" UId="107" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="108" />
+      <NewLine Num="1" UId="109" />
+      <Blank Num="19" UId="110" />
+      <Parameter Name="P" UId="111">
+        <Blank Num="1" UId="112" />
+        <Token Text=":=" UId="113" />
+        <Blank Num="1" UId="114" />
+        <Access Scope="LocalVariable" UId="115">
+          <Symbol UId="116">
+            <Component Name="headerPos" UId="117" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="118" />
+        <Token Text="+" UId="119" />
+        <Blank Num="1" UId="120" />
+        <Access Scope="LiteralConstant" UId="121">
+          <Constant UId="122">
+            <ConstantValue UId="124">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="125" />
+      <NewLine Num="1" UId="126" />
+      <Blank Num="19" UId="127" />
+      <Parameter Name="L" UId="128">
+        <Blank Num="1" UId="129" />
+        <Token Text=":=" UId="130" />
+        <Blank Num="1" UId="131" />
+        <Access Scope="Call" UId="132">
+          <CallInfo UId="133" BlockType="FC">
+            <Instance Scope="GlobalVariable" UId="135">
+              <Component Name="LEN_LS_1" UId="134" />
+            </Instance>
+            <Token Text="(" UId="136" />
+            <NamelessParameter UId="137">
+              <Access Scope="LocalVariable" UId="138">
+                <Symbol UId="139">
+                  <Component Name="IN" UId="140" />
+                </Symbol>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="142" />
+          </CallInfo>
+        </Access>
+        <Token Text="-" UId="143" />
+        <Token Text="(" UId="144" />
+        <Access Scope="LocalVariable" UId="145">
+          <Symbol UId="146">
+            <Component Name="headerPos" UId="147" />
+          </Symbol>
+        </Access>
+        <Token Text=")" UId="148" />
+      </Parameter>
+      <Token Text="," UId="149" />
+      <NewLine Num="1" UId="150" />
+      <Blank Num="19" UId="151" />
+      <Parameter Name="OUT" UId="152">
+        <Blank Num="1" UId="153" />
+        <Token Text=":=" UId="154" />
+        <Blank Num="1" UId="155" />
+        <Access Scope="LocalVariable" UId="156">
+          <Symbol UId="157">
+            <Component Name="OUT" UId="158" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="159" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="160" />
+  <NewLine Num="1" UId="161" />
+  <Token Text="ELSE" UId="162" />
+  <NewLine Num="1" UId="163" />
+  <Blank Num="4" UId="164" />
+  <Token Text="RETURN" UId="165" />
+  <Token Text=";" UId="166" />
+  <NewLine Num="1" UId="167" />
+  <Token Text="END_IF" UId="168" />
+  <Token Text=";" UId="169" />
+  <NewLine Num="3" UId="170" />
+  <Access Scope="LocalVariable" UId="171">
+    <Symbol UId="172">
+      <Component Name="footerPos" UId="173" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="174" />
+  <Token Text=":=" UId="175" />
+  <Blank Num="1" UId="176" />
+  <Access Scope="Call" UId="177">
+    <CallInfo UId="178" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="180">
+        <Component Name="FIND_LS_S_1" UId="179" />
+      </Instance>
+      <Token Text="(" UId="181" />
+      <Parameter Name="IN1" UId="182">
+        <Blank Num="1" UId="183" />
+        <Token Text=":=" UId="184" />
+        <Blank Num="1" UId="185" />
+        <Access Scope="LocalVariable" UId="186">
+          <Symbol UId="187">
+            <Component Name="OUT" UId="188" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="189" />
+      <Blank Num="1" UId="190" />
+      <Parameter Name="IN2" UId="191">
+        <Blank Num="1" UId="192" />
+        <Token Text=":=" UId="193" />
+        <Blank Num="1" UId="194" />
+        <Access Scope="LocalVariable" UId="195">
+          <Symbol UId="196">
+            <Component Name="footer" UId="197" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="199" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="200" />
+  <NewLine Num="2" UId="201" />
+  <Token Text="IF" UId="202" />
+  <Blank Num="1" UId="203" />
+  <Access Scope="LocalVariable" UId="204">
+    <Symbol UId="205">
+      <Component Name="footerPos" UId="206" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="207" />
+  <Token Text="&gt;" UId="208" />
+  <Blank Num="1" UId="209" />
+  <Access Scope="LiteralConstant" UId="210">
+    <Constant UId="211">
+      <ConstantValue UId="213">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="214" />
+  <Token Text="THEN" UId="215" />
+  <NewLine Num="1" UId="216" />
+  <Blank Num="4" UId="217" />
+  <Access Scope="LocalVariable" UId="218">
+    <Symbol UId="219">
+      <Component Name="OUT" UId="220" />
+      <Token Text="." UId="221" />
+      <Component Name="Len" UId="222" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="223" />
+  <Token Text=":=" UId="224" />
+  <Blank Num="1" UId="225" />
+  <Access Scope="LocalVariable" UId="226">
+    <Symbol UId="227">
+      <Component Name="footerPos" UId="228" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="229" />
+  <Token Text="-" UId="230" />
+  <Blank Num="1" UId="231" />
+  <Access Scope="LocalVariable" UId="232">
+    <Symbol UId="233">
+      <Component Name="ftrLen" UId="234" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="235" />
+  <NewLine Num="1" UId="236" />
+  <Blank Num="4" UId="237" />
+  <Access Scope="PredefinedVariable" UId="238">
+    <PredefinedVariable Name="ENO" UId="239" />
+  </Access>
+  <Blank Num="1" UId="240" />
+  <Token Text=":=" UId="241" />
+  <Blank Num="1" UId="242" />
+  <Access Scope="LiteralConstant" UId="243">
+    <Constant UId="244">
+      <ConstantValue UId="246">true</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="247" />
+  <NewLine Num="1" UId="248" />
+  <Token Text="ELSE" UId="249" />
+  <NewLine Num="1" UId="250" />
+  <Blank Num="4" UId="251" />
+  <Access Scope="Call" UId="252">
+    <CallInfo UId="253" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="255">
+        <Component Name="CLEAR_LS_1" UId="254" />
+      </Instance>
+      <Token Text="(" UId="256" />
+      <NamelessParameter UId="257">
+        <Access Scope="LocalVariable" UId="258">
+          <Symbol UId="259">
+            <Component Name="OUT" UId="260" />
+          </Symbol>
+        </Access>
+      </NamelessParameter>
+      <Token Text=")" UId="261" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="262" />
+  <NewLine Num="1" UId="263" />
+  <Token Text="END_IF" UId="264" />
+  <Token Text=";" UId="265" />
+  <NewLine Num="3" UId="266" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="8" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="B" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="C" CompositionName="Items">
+            <AttributeList>
+              <Culture>sl-SI</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="D" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

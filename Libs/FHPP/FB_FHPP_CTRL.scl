@@ -1,0 +1,397 @@
+﻿FUNCTION_BLOCK "FB_FHPP_CTRL"
+{ S7_Optimized_Access := 'FALSE' }
+AUTHOR : FESTO
+FAMILY : 'E-DRIVE'
+VERSION : 4.2
+   VAR_INPUT 
+      EnableDrive : Bool;
+      Stop : Bool;
+      Halt : Bool;
+      Brake : Bool;
+      ResetFault : Bool;
+      HMIAccessLocked : Bool;
+      OPM : Int;
+      StartTask : Bool;
+      StartHoming : Bool;
+      JogPos : Bool;
+      JogNeg : Bool;
+      TeachActValue : Bool;
+      ClearRemPos : Bool;
+      Relative : Bool;
+      DeactivateStrokeLimit : Bool;
+      ExecuteFunction : Bool;
+      RecordNo : Int;
+      SetFunctionNumber : Int;
+      SetFunctionGroup : Int;
+      SetValueVelocity : DInt;
+      SetValuePosition : DInt;
+      SetValueForceRamp : DInt;
+      SetValueForce : DInt;
+      SetValueRotRamp : DInt;
+      SetValueRotSpeed : DInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      DriveEnabled : Bool;
+      Ready : Bool;
+      Warning : Bool;
+      Fault : Bool;
+      SupplyVoltPresent : Bool;
+      ControlFCT_HMI : Bool;
+      StateOPM : Int;
+      HaltNotActive : Bool;
+      AckStart : Bool;
+      MC : Bool;
+      AckTeach : Bool;
+      DriveMoving : Bool;
+      DragError : Bool;
+      StandStillControl : Bool;
+      HomingValid : Bool;
+      ActualRecordNo : Int;
+      RC1 : Bool;
+      RCC : Bool;
+      VelocityLimitReached : Bool;
+      StrokeLimitReached : Bool;
+      FunctionIsActive : Bool;
+      ActualFunctionNumber : Int;
+      ActualFunctionGroup : Int;
+      ActualPosition : DInt;
+      ActualVelocity : Int;
+      ActualForce : Int;
+      ActualRotRamp : Int;
+      ActualRotSpeed : DInt;
+   END_VAR
+
+   VAR_IN_OUT 
+      FML_REF : "t_DT_FML_REF";
+   END_VAR
+
+   VAR 
+      Converted_BYTE5_8 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : DInt;
+      BByte { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} AT Converted_BYTE5_8 : Array[1..4] of Byte;
+      _Byte { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Byte;
+      BBit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} AT _Byte : Array[0..7] of Bool;
+      _Word { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Word;
+      WBit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} AT _Word : Array[0..15] of Bool;
+      OperationModeB1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      OperationModeB2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ControlModeB1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ControlModeB2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ContinuousMode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StateOperationModeB1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StateOperationModeB2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StateControlModeB1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StateControlModeB2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StateContinuousMode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+   END_VAR
+
+   VAR_TEMP 
+      tmpDevice : String[16];
+   END_VAR
+
+
+BEGIN
+	(*############################################################
+	   FESTO AG  Co., Esslingen
+	   Copyright (c) 2015. All rights reserved.    
+	
+	   NAME OF FUNCTION BLOCK:         FHPP_CTRL
+	   VERSION NUMBER:                 V4.2
+	   COMPOSER:                       bejk
+	   
+	         
+	   -----------------------------------------------------
+	   Date        Name                Activity                                                                              
+	   15.04.2015  Benjamin Kilgus     converted from Step7 V5.5 (V3.0)
+	   25.08.2015  Benjamin Kilgus     ActualVelocity, cast changed to BYTE_TO_SINT 
+	                                   case 5 for SetValue's adjusted to FW specific differents (V3.1)
+	   16.11.2015  Benjamin Kilgus     Änderungen für kompatibilität S7300/S7400 (V3.2)   
+	   13.04.2016  Benjamin Klein      Änderungen für FUNC Bit hinzugefügt
+	   01.08.2016  Benjamin Klein      SetValueForce wird auf 120% begrenzt, da die Rückmeldung nur 1 Byte Wertebereich hat.
+	   12.08.2016  Benjamin Klein      Datentyp ActualVelocity,ActualForce und ActualRotRamp auf INT geändert. 
+	   29.08.2016  Benjamin Klein      version changed (V4.1)
+	   21.09.2016  Benjamin Klein      bugfix Actual Force (V4.2)
+	############################################################*)
+	
+	(*-----------------------------------------------------------
+	    Initial Block Routine
+	------------------------------------------------------------*)
+	#tmpDevice := #FML_REF.DeviceType;
+	
+	(* Byte_3 *)
+	#StrokeLimitReached := FALSE;
+	#VelocityLimitReached := FALSE;
+	#StateContinuousMode := FALSE;
+	#StateControlModeB2 := FALSE;
+	#StateControlModeB1 := FALSE;
+	#ActualRecordNo := 0;
+	
+	(* Byte_4 *)
+	#RC1 := FALSE;
+	#RCC := FALSE;
+	#VelocityLimitReached := FALSE;
+	#StrokeLimitReached := FALSE;
+	
+	#ActualVelocity := 0;
+	#ActualForce := 0;
+	#ActualRotRamp := 0;
+	
+	(* Byte5-8 *)
+	#ActualPosition := 0;
+	#ActualRotSpeed := 0;
+	
+	(*-----------------------------------------------------------
+	    Asignment of the Input Data (Stateword)
+	------------------------------------------------------------*)
+	
+	#BByte[1] := #FML_REF.InData.FHPP[5];
+	#BByte[2] := #FML_REF.InData.FHPP[6];
+	#BByte[3] := #FML_REF.InData.FHPP[7];
+	#BByte[4] := #FML_REF.InData.FHPP[8];
+	
+	(* Byte1 SCON *)
+	#_Byte := #FML_REF.InData.FHPP[1];
+	#StateOperationModeB2 := #BBit[7];
+	#StateOperationModeB1 := #BBit[6];
+	#ControlFCT_HMI := #BBit[5];
+	#SupplyVoltPresent := #BBit[4];
+	#Fault := #BBit[3];
+	#Warning := #BBit[2];
+	#Ready := #BBit[1];
+	#DriveEnabled := #BBit[0];
+	
+	(* Byte2 SPOS *)
+	#_Byte := #FML_REF.InData.FHPP[2];
+	#HomingValid := #BBit[7];
+	#StandStillControl := #BBit[6];
+	#DragError := #BBit[5];
+	#DriveMoving := #BBit[4];
+	#AckTeach := #BBit[3];
+	#MC := #BBit[2];
+	#AckStart := #BBit[1];
+	#HaltNotActive := #BBit[0];
+	
+	(* Byte_3 *)
+	IF #StateOperationModeB1 THEN        // ===== directmode active =====
+	(* SDIR *)
+	  #_Byte := #FML_REF.InData.FHPP[3];
+	  IF #BBit[7] AND #tmpDevice = 'CMMP_AS' THEN
+	    
+	    IF #BBit[3] AND #BBit[4] THEN
+	      #ActualFunctionNumber := 3;
+	    ELSIF NOT #BBit[3] AND #BBit[4] THEN
+	      #ActualFunctionNumber := 2;
+	    ELSIF #BBit[3] AND NOT #BBit[4] THEN
+	      #ActualFunctionNumber := 1;
+	    ELSE
+	      #ActualFunctionNumber := 0;
+	    END_IF;
+	    
+	    IF #BBit[5] AND #BBit[6] THEN
+	      #ActualFunctionGroup := 3;
+	    ELSIF NOT #BBit[5] AND #BBit[6] THEN
+	      #ActualFunctionGroup := 2;
+	    ELSIF #BBit[5] AND NOT #BBit[6] THEN
+	      #ActualFunctionGroup := 1;
+	    ELSE
+	      #ActualFunctionGroup := 0;
+	    END_IF;
+	    
+	    #FunctionIsActive := TRUE;
+	    #StateControlModeB2 := #BBit[2];
+	    #StateControlModeB1 := #BBit[1];
+	    ;
+	  ELSE
+	    #StrokeLimitReached := #BBit[5];
+	    #VelocityLimitReached := #BBit[4];
+	    #StateContinuousMode := #BBit[3];
+	    #StateControlModeB2 := #BBit[2];
+	    #StateControlModeB1 := #BBit[1];
+	    
+	    #FunctionIsActive := FALSE;
+	    #ActualFunctionNumber := 0;
+	    #ActualFunctionGroup := 0;
+	  END_IF;
+	ELSE                                // ===== recordmode active =====
+	(* RecordNo *)
+	  #ActualRecordNo := BYTE_TO_INT(#FML_REF.InData.FHPP[3]);
+	  
+	  #FunctionIsActive := FALSE;
+	  #ActualFunctionNumber := 0;
+	  #ActualFunctionGroup := 0;
+	  ;
+	END_IF;
+	
+	(* Coding of the Operation Mode State *)
+	#_Word := 0;
+	#WBit[8] := #StateOperationModeB1;
+	#WBit[9] := #StateOperationModeB2;
+	#WBit[10] := #StateControlModeB1;
+	#WBit[11] := #StateControlModeB2;
+	#WBit[12] := #StateContinuousMode;
+	#StateOPM := WORD_TO_INT(#_Word);
+	
+	(* Byte_4/ Byte5-8*)
+	CASE #StateOPM OF
+	  0:// (0)  Recordmode
+	  (* RSB record state *)
+	    #_Byte := #FML_REF.InData.FHPP[4];
+	    #RC1 := #BBit[0];
+	    #RCC := #BBit[1];
+	    #VelocityLimitReached := #BBit[4];
+	    #StrokeLimitReached := #BBit[5];
+	    #ActualPosition := #Converted_BYTE5_8;
+	    
+	  1:
+	    // (1)  Directmode Position Control
+	    #ActualVelocity := BYTE_TO_INT(#FML_REF.InData.FHPP[4]);
+	    #ActualPosition := #Converted_BYTE5_8;
+	    
+	  5:// Directmode Force Control 
+	     IF BYTE_TO_INT(#FML_REF.InData.FHPP[4]) >= 128 THEN
+	          #ActualForce  := BYTE_TO_INT(#FML_REF.InData.FHPP[4] XOR B#16#FF);     // change Value to Positive Transfer to int
+	          #ActualForce  := (#ActualForce + 1)* (-1);                    // Change to negative again
+	     ELSE
+	          #ActualForce  := BYTE_TO_INT(#FML_REF.InData.FHPP[4]);
+	     END_IF;
+	
+	    #ActualPosition := #Converted_BYTE5_8;
+	    
+	  9:// Directmode Rotation-Speed-Control
+	    #ActualRotRamp := BYTE_TO_INT(#FML_REF.InData.FHPP[4]);
+	    #ActualRotSpeed := #Converted_BYTE5_8;
+	  ELSE
+	    ;
+	END_CASE;
+	
+	(*-----------------------------------------------------------
+	    Asignment of the Output Data (Controlword)
+	------------------------------------------------------------*)
+	(* Decoding of the Operationmode *)
+	#_Word := INT_TO_WORD(#OPM);
+	#OperationModeB1 := #WBit[8];
+	#OperationModeB2 := #WBit[9];
+	#ControlModeB1 := #WBit[10];
+	#ControlModeB2 := #WBit[11];
+	#ContinuousMode := #WBit[12];
+	
+	(* CCON Byte_1 *)
+	#_Byte := 0;
+	#BBit[7] := #OperationModeB2;
+	#BBit[6] := #OperationModeB1; // selection of Operation Mode
+	#BBit[5] := #HMIAccessLocked; // get control sovereignty
+	#BBit[4] := false;
+	#BBit[3] := #ResetFault;
+	#BBit[2] := #Brake;
+	#BBit[1] := #Stop;
+	#BBit[0] := #EnableDrive;
+	#FML_REF.OutData.FHPP[1] := #_Byte;
+	
+	(* CPOS Byte_2 *)
+	#_Byte := 0;
+	#BBit[7] := FALSE;
+	#BBit[6] := #ClearRemPos;
+	#BBit[5] := #TeachActValue;
+	#BBit[4] := #JogNeg;
+	#BBit[3] := #JogPos;
+	#BBit[2] := #StartHoming;
+	#BBit[1] := #StartTask;
+	#BBit[0] := #Halt;
+	#FML_REF.OutData.FHPP[2] := #_Byte;
+	
+	(* Byte_3 *)
+	IF #OperationModeB1 THEN     // ===== directmode =====
+	(* CDIR *)
+	  IF #ExecuteFunction AND #tmpDevice = 'CMMP_AS' THEN
+	    #_Byte := 0;
+	    #BBit[7] := TRUE;                                          // CDIR_B7:FUNC
+	    #BBit[6] := false;                                     // Func Group actually not used
+	    #BBit[5] := false;                                     // Func Group actually not used
+	    IF #SetFunctionGroup = 3 THEN
+	      #BBit[4] := TRUE;
+	      #BBit[3] := TRUE;
+	    ELSIF #SetFunctionGroup = 2 THEN
+	      #BBit[4] := TRUE;
+	      #BBit[3] := FALSE;
+	    ELSIF #SetFunctionGroup = 1 THEN
+	      #BBit[4] := FALSE;
+	      #BBit[3] := TRUE;
+	    ELSE
+	      #BBit[4] := FALSE;
+	      #BBit[3] := false;
+	    END_IF;
+	    #BBit[2] := #ControlModeB2;
+	    #BBit[1] := #ControlModeB1;
+	    #BBit[0] := #Relative;
+	    #FML_REF.OutData.FHPP[3] := #_Byte;
+	  ELSE
+	    #_Byte := 0;
+	    #BBit[7] := FALSE;
+	    #BBit[6] := FALSE;
+	    #BBit[5] := #DeactivateStrokeLimit;
+	    #BBit[4] := FALSE;
+	    #BBit[3] := #ContinuousMode;
+	    #BBit[2] := #ControlModeB2;
+	    #BBit[1] := #ControlModeB1;
+	    #BBit[0] := #Relative;
+	    #FML_REF.OutData.FHPP[3] := #_Byte;
+	  END_IF;
+	ELSE                        // ===== recordmode =====
+	(* RecordNo *)
+	  #FML_REF.OutData.FHPP[3] := INT_TO_BYTE(#RecordNo);
+	END_IF;
+	
+	(* Byte4/ Byte5-8 *)
+	CASE #OPM OF
+	  0:// (0)  Recordmode
+	    #FML_REF.OutData.FHPP[4] := 0;
+	    #Converted_BYTE5_8 := 0;
+	    
+	  1:
+	    // (1)  Directmode Position Control
+	    #FML_REF.OutData.FHPP[4] := DINT_TO_BYTE(MIN(IN1 := #SetValueVelocity, IN2 := 100));                   // byte 4 (permissible range of value is 0 to 100)
+	    #Converted_BYTE5_8 := #SetValuePosition;
+	    
+	  5:// Directmode Forcecontrol
+	  (* CMMP-AS *)
+	    IF (#tmpDevice = 'CMMP_AS') THEN
+	      #FML_REF.OutData.FHPP[4] := DINT_TO_BYTE(MIN(IN1 := #SetValueForceRamp, IN2 := 100));          // byte 4 (permissible range of value is 0 to 100);
+	      (* CMMO-ST AND EMCA-EC *)
+	    ELSIF (#tmpDevice = 'CMMO_ST') OR (#tmpDevice = 'EMCA_EC') THEN
+	      #FML_REF.OutData.FHPP[4] := DINT_TO_BYTE(MIN(IN1 := #SetValueVelocity, IN2 := 100));
+	      (*other*)
+	    ELSE
+	      #FML_REF.OutData.FHPP[4] := 0;
+	    END_IF;
+	    
+	    //Find minimum
+	    #Converted_BYTE5_8 := MIN(IN1 := #SetValueForce, IN2 := 120);
+	    //Find maximuim
+	    #Converted_BYTE5_8 := MAX(IN1 := #Converted_BYTE5_8, IN2 := -120);
+	    
+	  9:// Directmode Rotation-Speed-Control      
+	    #FML_REF.OutData.FHPP[4] := DINT_TO_BYTE(MIN(IN1 := #SetValueRotRamp, IN2 := 100));                     // byte 4 (permissible range of value is 0 to 100)
+	    #Converted_BYTE5_8 := #SetValueRotSpeed;
+	    
+	  ELSE // illegal OPM              
+	    #FML_REF.OutData.FHPP[4] := 0;
+	    #Converted_BYTE5_8 := 0;
+	END_CASE;
+	
+	(* Set Output DATA OF DRIVE *)
+	#FML_REF.OutData.FHPP[5] := #BByte[1];
+	#FML_REF.OutData.FHPP[6] := #BByte[2];
+	#FML_REF.OutData.FHPP[7] := #BByte[3];
+	#FML_REF.OutData.FHPP[8] := #BByte[4];
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+

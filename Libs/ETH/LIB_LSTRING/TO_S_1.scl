@@ -1,0 +1,170 @@
+﻿FUNCTION "TO_S_1" : String
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IN : Variant;
+   END_VAR
+
+   VAR_TEMP 
+      inIsDecimal : Bool;
+      boTmp : Bool;
+      bTmp : Byte;
+      cTmp : Char;
+      wTmp : Word;
+      dwTmp : DWord;
+      lwTmp : LWord;
+      siTmp : SInt;
+      iTmp : Int;
+      diTmp : DInt;
+      usiTmp : USInt;
+      uiTmp : UInt;
+      udiTmp : UDInt;
+      liTmp : LInt;
+      uliTmp : ULInt;
+      rTmp : Real;
+      lrTmp : LReal;
+   END_VAR
+
+
+BEGIN
+	(*
+	Author: Christopher Gittner - Hella KgaA - W2-TSPT3
+	Version: 1.2
+	
+	Converts a type of Variant to String.
+	If the Input is a decimal number, a leading '+' is stripped.
+	
+	Changelog:
+	1.0 2016-05-05 - Gittner - Initial Version
+	1.2 2016-11-29 - Gittner - Added support for Array of Char / Byte
+	*)
+	
+	#TO_S_1 := '';
+	
+	(* Check for Array of Char / Byte *)
+	IF IS_ARRAY(#IN) THEN
+	    IF TypeOfElements(#IN) = Char OR TypeOfElements(#IN) = Byte THEN
+	        Chars_TO_Strg(Chars := #IN,
+	                      pChars :=0,
+	                      Cnt := 0,
+	                      Strg => #TO_S_1);
+	        RETURN;
+	    END_IF;
+	END_IF;
+	
+	
+	CASE TypeOf(#IN) OF
+	    String:
+	        VariantGet(SRC := #IN,
+	                   DST => #TO_S_1);
+	        
+	    Byte:
+	        VariantGet(SRC := #IN,
+	                   DST => #bTmp);
+	        #cTmp := #bTmp;
+	        S_MOVE(IN := #cTmp,
+	               OUT => #TO_S_1);
+	        
+	    Char:
+	        VariantGet(SRC := #IN,
+	                   DST => #cTmp);
+	        S_MOVE(IN := #cTmp,
+	               OUT => #TO_S_1);
+	        
+	    Word:
+	        VariantGet(SRC := #IN,
+	                   DST => #wTmp);
+	        #TO_S_1 :=UINT_TO_STRING(#wTmp);
+	        
+	    DWord:
+	        VariantGet(SRC := #IN,
+	                   DST => #dwTmp);
+	        #TO_S_1 := UDINT_TO_STRING(#dwTmp);
+	        #inIsDecimal := true;
+	        
+	    LWord:
+	        VariantGet(SRC := #IN,
+	                   DST => #lwTmp);
+	        #TO_S_1 := ULINT_TO_STRING(#lwTmp);
+	        #inIsDecimal := true;
+	        
+	    SInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #siTmp);
+	        #TO_S_1 := SINT_TO_STRING(#siTmp);
+	        #inIsDecimal := true;
+	        
+	    Int:
+	        VariantGet(SRC := #IN,
+	                   DST => #iTmp);
+	        #TO_S_1 := LINT_TO_STRING(#iTmp);
+	        #inIsDecimal := true;
+	        
+	    DInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #diTmp);
+	        #TO_S_1 := DINT_TO_STRING(#diTmp);
+	        #inIsDecimal := true;
+	        
+	    USInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #usiTmp);
+	        #TO_S_1 := USINT_TO_STRING(#usiTmp);
+	        #inIsDecimal := true;
+	        
+	    UInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #uiTmp);
+	        #TO_S_1 := UINT_TO_STRING(#uiTmp);
+	        #inIsDecimal := true;
+	        
+	    UDInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #udiTmp);
+	        #TO_S_1 := UDINT_TO_STRING(#udiTmp);
+	        #inIsDecimal := true;
+	        
+	    LInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #liTmp);
+	        #TO_S_1 := LINT_TO_STRING(#liTmp);
+	        #inIsDecimal := true;
+	        
+	    ULInt:
+	        VariantGet(SRC := #IN,
+	                   DST => #uliTmp);
+	        #TO_S_1 := ULINT_TO_STRING(#uliTmp);
+	        #inIsDecimal := true;
+	       // !!! upraveno 
+	    Real:
+	        VariantGet(SRC := #IN,
+	                   DST => #rTmp);
+	        #TO_S_1 := "FC_REAL_TO_STR_D_1"(in:=#rTmp, precision:=3);
+	    LReal:
+	        VariantGet(SRC := #IN,
+	                   DST => #lrTmp);
+	        #TO_S_1 := LREAL_TO_STRING(#lrTmp);
+	        
+	    Bool:
+	        VariantGet(SRC := #IN,
+	                   DST => #boTmp);
+	        IF #boTmp THEN
+	            #TO_S_1 := '1';
+	        ELSE
+	            #TO_S_1 := '0';
+	        END_IF;
+	        
+	    ELSE
+	        (* Invalid Data Type *)
+	        ENO := FALSE;
+	        RETURN;
+	END_CASE;
+	
+	
+	(* Strip the leading '+' from a Decimal Number *)
+	IF #inIsDecimal THEN
+	    #TO_S_1 := MID(IN := #TO_S_1, L := LEN(#TO_S_1) - 1, P := 2);
+	END_IF;
+	
+END_FUNCTION
+

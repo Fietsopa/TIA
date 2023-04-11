@@ -1,0 +1,130 @@
+﻿FUNCTION_BLOCK "FB_Read_IP_1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ReqIN : Bool;
+      Hardware_ID : HW_IO := 16#64;
+   END_VAR
+
+   VAR_OUTPUT 
+      IPParam : Struct
+         IPAddress : Array[0..3] of USInt;
+         SubnetMask : Array[0..3] of USInt;
+         StandardGateway : Array[0..3] of USInt;
+         MACAddress : Array[0..5] of USInt;
+         PNName : String;
+      END_STRUCT;
+      Busy : Bool;
+      Valid : Bool;
+      Error : Bool;
+      Status : DWord;
+      LEN : UInt;
+   END_VAR
+
+   VAR 
+      ReqFlag : Bool;
+      RDREC_Status : DWord;
+      RDREC_LEN : UInt;
+      RDREC_Valid : Bool;
+      RDREC_Busy : Bool;
+      RDREC_Error : Bool;
+      StatusSave : DWord;
+      PDInterfaceDataReal : Struct
+         BlockType : UInt;
+         BlockLength : UInt;
+         BlockVersionHigh : USInt;
+         BlockVersionLow : USInt;
+         Data : Array[0..301] of Byte;
+         OwnChassisID : String;
+      END_STRUCT;
+   END_VAR
+
+   VAR_TEMP 
+      IPParValStartAddress : USInt;
+      LengthOwnChassisID : USInt;
+   END_VAR
+
+
+BEGIN
+	  
+	 "R_TRIG_DB"(CLK:=#ReqIN,
+	              Q=>#ReqFlag);
+	  
+	  
+	
+	
+	"RDREC_DB"(REQ:=#ReqFlag,
+	           ID:=#Hardware_ID,
+	           INDEX:=w#16#8080,
+	           MLEN:=300,
+	           VALID=>#RDREC_Valid,
+	           BUSY=>#RDREC_Busy,
+	           ERROR=>#RDREC_Error,
+	           STATUS=>#RDREC_Status,
+	           LEN=>#RDREC_LEN,
+	           RECORD:= #PDInterfaceDataReal);
+	
+	
+	
+	IF #RDREC_Valid THEN
+	  
+	   // Get PN-interface Name. String starts at an odd address within the array
+	   Chars_TO_Strg(Chars := #PDInterfaceDataReal.Data, pChars := 1, Cnt := #PDInterfaceDataReal.Data[0], Strg => #IPParam.PNName );
+	   
+	   // Calculate start address of IP-address data. Blockdata is padded to make it Unsigned32 aligned!      
+	    #IPParValStartAddress := #PDInterfaceDataReal.Data[0]  + (4 - ((#PDInterfaceDataReal.Data[0] + 2) MOD 4));
+	    
+	  
+	  
+	 // Copy MAC-Address data
+	    #IPParam.MACAddress[0] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 0];
+	    #IPParam.MACAddress[1] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 1];
+	    #IPParam.MACAddress[2] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 2];
+	    #IPParam.MACAddress[3] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 3];
+	    #IPParam.MACAddress[4] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 4];
+	    #IPParam.MACAddress[5] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 5];
+	    
+	     // Copy IP-Address data
+	    #IPParam.IPAddress[0] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 8 + 0];
+	    #IPParam.IPAddress[1] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 8 + 1];
+	    #IPParam.IPAddress[2] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 8 + 2];
+	    #IPParam.IPAddress[3] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 8 + 3];
+	    
+	    // Copy Subnetmask data
+	    #IPParam.SubnetMask[0] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 12 + 0];
+	    #IPParam.SubnetMask[1] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 12 + 1];
+	    #IPParam.SubnetMask[2] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 12 + 2];
+	    #IPParam.SubnetMask[3] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 12 + 3];
+	  
+	  // Copy Standard Gateway data
+	    #IPParam.StandardGateway[0] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 16 + 0];
+	    #IPParam.StandardGateway[1] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 16 + 1];
+	    #IPParam.StandardGateway[2] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 16 + 2];
+	    #IPParam.StandardGateway[3] := #PDInterfaceDataReal.Data[#IPParValStartAddress + 16 + 3];
+	  
+	END_IF;
+	
+	IF #RDREC_Error THEN
+	  // Statement section IF
+	  #StatusSave:=#RDREC_Status;
+	  #LEN:=0;
+	ELSE
+	  #StatusSave:=0;
+	  #LEN:=#RDREC_LEN;
+	END_IF;
+	
+	
+	IF  #RDREC_Error OR #RDREC_Valid THEN
+	  // Statement section IF
+	  #ReqFlag:=FALSE;
+	END_IF;
+	
+	#Status:=#StatusSave;
+	#Valid:=#RDREC_Valid;
+	#Busy:=#RDREC_Busy;
+	#Error:=#RDREC_Error;
+	
+	
+	
+END_FUNCTION_BLOCK
+

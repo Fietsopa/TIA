@@ -1,0 +1,3034 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-04-11T09:34:02.7786761Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>SINAMICS Startdrive Advanced</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G130, G150, S120, S150, SINAMICS MV, S210</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G110M, G120, G120C, G120D, G120P, G115D</DisplayName>
+        <DisplayVersion>V17 Update2</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC UA Professional</DisplayName>
+        <DisplayVersion>V17 Update 3</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="trig" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="ID" Datatype="UInt" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="reset" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="dataDeliminer" Datatype="String" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="errorText" Datatype="String" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="errorSignalization" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="timeout_value" Datatype="Time" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="DMC" Datatype="String" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="station" Datatype="String" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+  </Section>
+  <Section Name="Output">
+    <Member Name="pass" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="fail" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="exception" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="timeout_err" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="retval" Datatype="UInt" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+  </Section>
+  <Section Name="InOut">
+    <Member Name="dataToSendIn" Datatype="&quot;t_LString&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="Len" Datatype="UInt" />
+          <Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="dataRecieved" Datatype="&quot;t_LString&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="Len" Datatype="UInt" />
+          <Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="dataToSendOut" Datatype="&quot;t_LString&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="Len" Datatype="UInt" />
+          <Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="rettext_o" Datatype="String" Accessibility="Public" />
+  </Section>
+  <Section Name="Static">
+    <Member Name="edge" Datatype="Array[0..0] of Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="Timeout" Datatype="TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="None"><Member Name="PT" Datatype="Time" /><Member Name="ET" Datatype="Time" /><Member Name="IN" Datatype="Bool" /><Member Name="Q" Datatype="Bool" /></Section></Sections></Member>
+    <Member Name="iPA_iTac_timeout" Datatype="Program_Alarm" Version="1.0" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Base"><Sections Datatype="ALARM_BASE" Version="1.0"><Section Name="Input" /><Section Name="Output" /><Section Name="InOut" /><Section Name="Static"><Member Name="Alarm_ID" Datatype="Event_ID" Version="1.0"><Sections><Section Name="None"><Member Name="ALID" Datatype="Word" /><Member Name="ARID" Datatype="Word" /></Section></Sections></Member><Member Name="HANDLE" Datatype="DWord" /></Section></Sections></Section><Section Name="Input"><Member Name="SIG" Datatype="Bool" /><Member Name="TIMESTAMP" Datatype="LDT" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /><Member Name="SD_5" Datatype="Variant" /><Member Name="SD_6" Datatype="Variant" /><Member Name="SD_7" Datatype="Variant" /><Member Name="SD_8" Datatype="Variant" /><Member Name="SD_9" Datatype="Variant" /><Member Name="SD_10" Datatype="Variant" /></Section><Section Name="Output"><Member Name="Error" Datatype="Bool" /><Member Name="Status" Datatype="Word" /></Section><Section Name="InOut" /><Section Name="Static"><Member Name="SD_0" Datatype="AssocValue_0" Version="1.0"><Sections><Section Name="None"><Member Name="Syntax" Datatype="UInt" /><Member Name="Aap" Datatype="Byte" /></Section></Sections></Member><Member Name="SIG_Edge_History" Datatype="Bool" /><Member Name="INIT_FB_State" Datatype="DWord" /></Section></Sections></Member>
+    <Member Name="iPA_iTac_fail" Datatype="Program_Alarm" Version="1.0" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Base"><Sections Datatype="ALARM_BASE" Version="1.0"><Section Name="Input" /><Section Name="Output" /><Section Name="InOut" /><Section Name="Static"><Member Name="Alarm_ID" Datatype="Event_ID" Version="1.0"><Sections><Section Name="None"><Member Name="ALID" Datatype="Word" /><Member Name="ARID" Datatype="Word" /></Section></Sections></Member><Member Name="HANDLE" Datatype="DWord" /></Section></Sections></Section><Section Name="Input"><Member Name="SIG" Datatype="Bool" /><Member Name="TIMESTAMP" Datatype="LDT" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /><Member Name="SD_5" Datatype="Variant" /><Member Name="SD_6" Datatype="Variant" /><Member Name="SD_7" Datatype="Variant" /><Member Name="SD_8" Datatype="Variant" /><Member Name="SD_9" Datatype="Variant" /><Member Name="SD_10" Datatype="Variant" /></Section><Section Name="Output"><Member Name="Error" Datatype="Bool" /><Member Name="Status" Datatype="Word" /></Section><Section Name="InOut" /><Section Name="Static"><Member Name="SD_0" Datatype="AssocValue_0" Version="1.0"><Sections><Section Name="None"><Member Name="Syntax" Datatype="UInt" /><Member Name="Aap" Datatype="Byte" /></Section></Sections></Member><Member Name="SIG_Edge_History" Datatype="Bool" /><Member Name="INIT_FB_State" Datatype="DWord" /></Section></Sections></Member>
+    <Member Name="toutErr" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="retValStr" Datatype="String" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="dataReady" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="ID_1" Datatype="&quot;t_LString&quot;" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Sections><Section Name="None"><Member Name="Len" Datatype="UInt" /><Member Name="Data" Datatype="Array[0..&quot;DEF_MAX_LEN_LS&quot;] of Byte" /></Section></Sections></Member>
+  </Section>
+  <Section Name="Temp">
+    <Member Name="id_x" Datatype="UInt" />
+    <Member Name="id_x1" Datatype="Bool" />
+    <Member Name="id_x9" Datatype="Bool" />
+    <Member Name="fail_local" Datatype="Bool" />
+    <Member Name="pass_local" Datatype="Bool" />
+    <Member Name="auxStr" Datatype="String" />
+    <Member Name="ID_recieved" Datatype="UInt" />
+    <Member Name="sendPLS" Datatype="Bool" />
+  </Section>
+  <Section Name="Constant" />
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>FB_iTacStdStep</Name>
+      <Number>123</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>sl-SI</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="reset" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="22">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>''</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="rettext_o" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="retval" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="pass" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="fail" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="exception" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="timeout_err" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="30">
+      <Symbol>
+        <Component Name="toutErr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="32">
+      <Symbol>
+        <Component Name="eol" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="33">
+      <Symbol>
+        <Component Name="eol" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="34" />
+    <Part Name="S_Move" UId="35" DisabledENO="true" />
+    <Part Name="Move" UId="36" DisabledENO="true">
+      <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+    </Part>
+    <Call UId="37">
+      <CallInfo Name="FC_rst4" BlockType="FC">
+        <Parameter Name="rst0" Section="Output" Type="Bool" />
+        <Parameter Name="rst1" Section="Output" Type="Bool" />
+        <Parameter Name="rst2" Section="Output" Type="Bool" />
+        <Parameter Name="rst4" Section="Output" Type="Bool" />
+      </CallInfo>
+    </Call>
+    <Call UId="38">
+      <CallInfo Name="FC_rst4" BlockType="FC">
+        <Parameter Name="rst0" Section="Output" Type="Bool" />
+        <Parameter Name="rst1" Section="Output" Type="Bool" />
+        <Parameter Name="rst2" Section="Output" Type="Bool" />
+        <Parameter Name="rst4" Section="Output" Type="Bool" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="39">
+      <Powerrail />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="21" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="en" />
+      <NameCon UId="36" Name="en" />
+      <NameCon UId="37" Name="en" />
+      <NameCon UId="38" Name="en" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="22" />
+      <NameCon UId="35" Name="in" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="35" Name="out" />
+      <IdentCon UId="23" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="24" />
+      <NameCon UId="36" Name="in" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="36" Name="out1" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="37" Name="rst0" />
+      <IdentCon UId="26" />
+    </Wire>
+    <Wire UId="47">
+      <NameCon UId="37" Name="rst1" />
+      <IdentCon UId="27" />
+    </Wire>
+    <Wire UId="48">
+      <NameCon UId="37" Name="rst2" />
+      <IdentCon UId="28" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="37" Name="rst4" />
+      <IdentCon UId="29" />
+    </Wire>
+    <Wire UId="50">
+      <NameCon UId="38" Name="rst0" />
+      <IdentCon UId="30" />
+    </Wire>
+    <Wire UId="51">
+      <NameCon UId="38" Name="rst1" />
+      <IdentCon UId="31" />
+    </Wire>
+    <Wire UId="52">
+      <NameCon UId="38" Name="rst2" />
+      <IdentCon UId="32" />
+    </Wire>
+    <Wire UId="53">
+      <NameCon UId="38" Name="rst4" />
+      <IdentCon UId="33" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="8" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>reset / init</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="trig" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="dataToSendOut" />
+        <Component Name="Len" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="edge" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>0</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="sendPLS" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="26" />
+    <Part Name="Eq" UId="27">
+      <TemplateValue Name="SrcType" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="PBox" UId="28" />
+    <Part Name="Coil" UId="29" />
+  </Parts>
+  <Wires>
+    <Wire UId="30">
+      <Powerrail />
+      <NameCon UId="26" Name="in" />
+    </Wire>
+    <Wire UId="31">
+      <IdentCon UId="21" />
+      <NameCon UId="26" Name="operand" />
+    </Wire>
+    <Wire UId="32">
+      <NameCon UId="26" Name="out" />
+      <NameCon UId="27" Name="pre" />
+    </Wire>
+    <Wire UId="33">
+      <IdentCon UId="22" />
+      <NameCon UId="27" Name="in1" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="23" />
+      <NameCon UId="27" Name="in2" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="24" />
+      <NameCon UId="28" Name="bit" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="25" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="F" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>send pls</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="12" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Token Text="IF" UId="21" />
+  <Blank Num="1" UId="22" />
+  <Access Scope="LocalVariable" UId="23">
+    <Symbol UId="24">
+      <Component Name="sendPLS" UId="25" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="26" />
+  <Token Text="THEN" UId="27" />
+  <NewLine Num="1" UId="28" />
+  <Blank Num="4" UId="29" />
+  <NewLine Num="1" UId="30" />
+  <Blank Num="4" UId="31" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="32">
+    <Text UId="33"> add station</Text>
+  </LineComment>
+  <NewLine Num="1" UId="34" />
+  <Blank Num="4" UId="35" />
+  <Access Scope="Call" UId="36">
+    <CallInfo UId="37" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="39">
+        <Component Name="TO_LS_1" UId="38" />
+      </Instance>
+      <Token Text="(" UId="40" />
+      <Parameter Name="IN" UId="41">
+        <Blank Num="1" UId="42" />
+        <Token Text=":=" UId="43" />
+        <Blank Num="1" UId="44" />
+        <Access Scope="LocalVariable" UId="45">
+          <Symbol UId="46">
+            <Component Name="station" UId="47" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="48" />
+      <NewLine Num="1" UId="49" />
+      <Blank Num="14" UId="50" />
+      <Parameter Name="OUT" UId="51">
+        <Blank Num="1" UId="52" />
+        <Token Text=":=" UId="53" />
+        <Blank Num="1" UId="54" />
+        <Access Scope="LocalVariable" UId="55">
+          <Symbol UId="56">
+            <Component Name="dataToSendOut" UId="57" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="58" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="59" />
+  <NewLine Num="1" UId="60" />
+  <Blank Num="4" UId="61" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="62">
+    <Text UId="63"> copy ID</Text>
+  </LineComment>
+  <NewLine Num="1" UId="64" />
+  <Blank Num="4" UId="65" />
+  <Access Scope="Call" UId="66">
+    <CallInfo UId="67" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="69">
+        <Component Name="CONCAT_LS_1" UId="68" />
+      </Instance>
+      <Token Text="(" UId="70" />
+      <Parameter Name="IN1" UId="71">
+        <Blank Num="1" UId="72" />
+        <Token Text=":=" UId="73" />
+        <Blank Num="1" UId="74" />
+        <Access Scope="LocalVariable" UId="75">
+          <Symbol UId="76">
+            <Component Name="dataToSendOut" UId="77" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="78" />
+      <NewLine Num="1" UId="79" />
+      <Blank Num="18" UId="80" />
+      <Parameter Name="IN2" UId="81">
+        <Blank Num="1" UId="82" />
+        <Token Text=":=" UId="83" />
+        <Blank Num="1" UId="84" />
+        <Access Scope="LocalVariable" UId="85">
+          <Symbol UId="86">
+            <Component Name="dataDeliminer" UId="87" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="88" />
+      <NewLine Num="1" UId="89" />
+      <Blank Num="18" UId="90" />
+      <Parameter Name="OUT" UId="91">
+        <Blank Num="1" UId="92" />
+        <Token Text=":=" UId="93" />
+        <Blank Num="1" UId="94" />
+        <Access Scope="LocalVariable" UId="95">
+          <Symbol UId="96">
+            <Component Name="dataToSendOut" UId="97" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="98" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="99" />
+  <NewLine Num="1" UId="100" />
+  <Blank Num="4" UId="101" />
+  <NewLine Num="1" UId="102" />
+  <Blank Num="4" UId="103" />
+  <Access Scope="Call" UId="104">
+    <CallInfo UId="105" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="107">
+        <Component Name="TO_LS_1" UId="106" />
+      </Instance>
+      <Token Text="(" UId="108" />
+      <Parameter Name="IN" UId="109">
+        <Blank Num="1" UId="110" />
+        <Token Text=":=" UId="111" />
+        <Blank Num="1" UId="112" />
+        <Access Scope="LocalVariable" UId="113">
+          <Symbol UId="114">
+            <Component Name="ID" UId="115" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="116" />
+      <Blank Num="1" UId="117" />
+      <Parameter Name="OUT" UId="118">
+        <Blank Num="1" UId="119" />
+        <Token Text=":=" UId="120" />
+        <Blank Num="1" UId="121" />
+        <Access Scope="LocalVariable" UId="122">
+          <Symbol UId="123">
+            <Component Name="ID_1" UId="124" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="125" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="126" />
+  <NewLine Num="1" UId="127" />
+  <Blank Num="4" UId="128" />
+  <Access Scope="Call" UId="129">
+    <CallInfo UId="130" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="132">
+        <Component Name="CONCAT_LS_LS_1" UId="131" />
+      </Instance>
+      <Token Text="(" UId="133" />
+      <Parameter Name="IN1" UId="134">
+        <Blank Num="1" UId="135" />
+        <Token Text=":=" UId="136" />
+        <Blank Num="1" UId="137" />
+        <Access Scope="LocalVariable" UId="138">
+          <Symbol UId="139">
+            <Component Name="dataToSendOut" UId="140" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="141" />
+      <NewLine Num="1" UId="142" />
+      <Blank Num="21" UId="143" />
+      <Parameter Name="IN2" UId="144">
+        <Blank Num="1" UId="145" />
+        <Token Text=":=" UId="146" />
+        <Blank Num="1" UId="147" />
+        <Access Scope="LocalVariable" UId="148">
+          <Symbol UId="149">
+            <Component Name="ID_1" UId="150" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="151" />
+      <NewLine Num="1" UId="152" />
+      <Blank Num="21" UId="153" />
+      <Parameter Name="OUT" UId="154">
+        <Blank Num="1" UId="155" />
+        <Token Text=":=" UId="156" />
+        <Blank Num="1" UId="157" />
+        <Access Scope="LocalVariable" UId="158">
+          <Symbol UId="159">
+            <Component Name="dataToSendOut" UId="160" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="161" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="162" />
+  <NewLine Num="1" UId="163" />
+  <Blank Num="4" UId="164" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="165">
+    <Text UId="166"> add DMC data</Text>
+  </LineComment>
+  <NewLine Num="1" UId="167" />
+  <Blank Num="4" UId="168" />
+  <Token Text="IF" UId="169" />
+  <Blank Num="1" UId="170" />
+  <Token Text="(" UId="171" />
+  <Access Scope="LocalVariable" UId="172">
+    <Symbol UId="173">
+      <Component Name="DMC" UId="174" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="175" />
+  <Token Text="&lt;&gt;" UId="176" />
+  <Blank Num="1" UId="177" />
+  <Access Scope="LiteralConstant" UId="178">
+    <Constant UId="179">
+      <ConstantValue UId="181">''</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="182" />
+  <Blank Num="1" UId="183" />
+  <Token Text="THEN" UId="184" />
+  <NewLine Num="1" UId="185" />
+  <Blank Num="11" UId="186" />
+  <NewLine Num="1" UId="187" />
+  <Blank Num="8" UId="188" />
+  <Access Scope="Call" UId="189">
+    <CallInfo UId="190" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="192">
+        <Component Name="CONCAT_LS_1" UId="191" />
+      </Instance>
+      <Token Text="(" UId="193" />
+      <Parameter Name="IN1" UId="194">
+        <Blank Num="1" UId="195" />
+        <Token Text=":=" UId="196" />
+        <Blank Num="1" UId="197" />
+        <Access Scope="LocalVariable" UId="198">
+          <Symbol UId="199">
+            <Component Name="dataToSendOut" UId="200" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="201" />
+      <NewLine Num="1" UId="202" />
+      <Blank Num="20" UId="203" />
+      <Parameter Name="IN2" UId="204">
+        <Blank Num="1" UId="205" />
+        <Token Text=":=" UId="206" />
+        <Blank Num="1" UId="207" />
+        <Access Scope="LocalVariable" UId="208">
+          <Symbol UId="209">
+            <Component Name="dataDeliminer" UId="210" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="211" />
+      <NewLine Num="1" UId="212" />
+      <Blank Num="20" UId="213" />
+      <Parameter Name="OUT" UId="214">
+        <Blank Num="1" UId="215" />
+        <Token Text=":=" UId="216" />
+        <Blank Num="1" UId="217" />
+        <Access Scope="LocalVariable" UId="218">
+          <Symbol UId="219">
+            <Component Name="dataToSendOut" UId="220" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="221" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="222" />
+  <NewLine Num="1" UId="223" />
+  <Blank Num="8" UId="224" />
+  <NewLine Num="1" UId="225" />
+  <Blank Num="8" UId="226" />
+  <Access Scope="Call" UId="227">
+    <CallInfo UId="228" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="230">
+        <Component Name="CONCAT_LS_1" UId="229" />
+      </Instance>
+      <Token Text="(" UId="231" />
+      <Parameter Name="IN1" UId="232">
+        <Blank Num="1" UId="233" />
+        <Token Text=":=" UId="234" />
+        <Blank Num="1" UId="235" />
+        <Access Scope="LocalVariable" UId="236">
+          <Symbol UId="237">
+            <Component Name="dataToSendOut" UId="238" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="239" />
+      <NewLine Num="1" UId="240" />
+      <Blank Num="22" UId="241" />
+      <Parameter Name="IN2" UId="242">
+        <Blank Num="1" UId="243" />
+        <Token Text=":=" UId="244" />
+        <Blank Num="1" UId="245" />
+        <Access Scope="LocalVariable" UId="246">
+          <Symbol UId="247">
+            <Component Name="DMC" UId="248" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="249" />
+      <NewLine Num="1" UId="250" />
+      <Blank Num="22" UId="251" />
+      <Parameter Name="OUT" UId="252">
+        <Blank Num="1" UId="253" />
+        <Token Text=":=" UId="254" />
+        <Blank Num="1" UId="255" />
+        <Access Scope="LocalVariable" UId="256">
+          <Symbol UId="257">
+            <Component Name="dataToSendOut" UId="258" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="259" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="260" />
+  <NewLine Num="1" UId="261" />
+  <Blank Num="4" UId="262" />
+  <Token Text="END_IF" UId="263" />
+  <Token Text=";" UId="264" />
+  <NewLine Num="1" UId="265" />
+  <Blank Num="4" UId="266" />
+  <NewLine Num="1" UId="267" />
+  <Blank Num="4" UId="268" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="269">
+    <Text UId="270"> add other data</Text>
+  </LineComment>
+  <NewLine Num="1" UId="271" />
+  <Blank Num="4" UId="272" />
+  <Token Text="IF" UId="273" />
+  <Blank Num="1" UId="274" />
+  <Token Text="(" UId="275" />
+  <Access Scope="LocalVariable" UId="276">
+    <Symbol UId="277">
+      <Component Name="dataToSendIn" UId="278" />
+      <Token Text="." UId="279" />
+      <Component Name="Len" UId="280" />
+    </Symbol>
+  </Access>
+  <Token Text="&lt;&gt;" UId="281" />
+  <Blank Num="1" UId="282" />
+  <Access Scope="LiteralConstant" UId="283">
+    <Constant UId="284">
+      <ConstantValue UId="286">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="287" />
+  <Blank Num="1" UId="288" />
+  <Token Text="THEN" UId="289" />
+  <NewLine Num="1" UId="290" />
+  <Blank Num="8" UId="291" />
+  <NewLine Num="1" UId="292" />
+  <Blank Num="8" UId="293" />
+  <Access Scope="Call" UId="294">
+    <CallInfo UId="295" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="297">
+        <Component Name="CONCAT_LS_1" UId="296" />
+      </Instance>
+      <Token Text="(" UId="298" />
+      <Parameter Name="IN1" UId="299">
+        <Blank Num="1" UId="300" />
+        <Token Text=":=" UId="301" />
+        <Blank Num="1" UId="302" />
+        <Access Scope="LocalVariable" UId="303">
+          <Symbol UId="304">
+            <Component Name="dataToSendOut" UId="305" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="306" />
+      <NewLine Num="1" UId="307" />
+      <Blank Num="20" UId="308" />
+      <Parameter Name="IN2" UId="309">
+        <Blank Num="1" UId="310" />
+        <Token Text=":=" UId="311" />
+        <Blank Num="1" UId="312" />
+        <Access Scope="LocalVariable" UId="313">
+          <Symbol UId="314">
+            <Component Name="dataDeliminer" UId="315" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="316" />
+      <NewLine Num="1" UId="317" />
+      <Blank Num="20" UId="318" />
+      <Parameter Name="OUT" UId="319">
+        <Blank Num="1" UId="320" />
+        <Token Text=":=" UId="321" />
+        <Blank Num="1" UId="322" />
+        <Access Scope="LocalVariable" UId="323">
+          <Symbol UId="324">
+            <Component Name="dataToSendOut" UId="325" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="326" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="327" />
+  <NewLine Num="1" UId="328" />
+  <Blank Num="8" UId="329" />
+  <NewLine Num="1" UId="330" />
+  <Blank Num="8" UId="331" />
+  <Access Scope="Call" UId="332">
+    <CallInfo UId="333" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="335">
+        <Component Name="CONCAT_LS_LS_1" UId="334" />
+      </Instance>
+      <Token Text="(" UId="336" />
+      <Parameter Name="IN1" UId="337">
+        <Blank Num="1" UId="338" />
+        <Token Text=":=" UId="339" />
+        <Blank Num="1" UId="340" />
+        <Access Scope="LocalVariable" UId="341">
+          <Symbol UId="342">
+            <Component Name="dataToSendOut" UId="343" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="344" />
+      <NewLine Num="1" UId="345" />
+      <Blank Num="23" UId="346" />
+      <Parameter Name="IN2" UId="347">
+        <Blank Num="1" UId="348" />
+        <Token Text=":=" UId="349" />
+        <Blank Num="1" UId="350" />
+        <Access Scope="LocalVariable" UId="351">
+          <Symbol UId="352">
+            <Component Name="dataToSendIn" UId="353" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="354" />
+      <NewLine Num="1" UId="355" />
+      <Blank Num="20" UId="356" />
+      <Parameter Name="OUT" UId="357">
+        <Blank Num="1" UId="358" />
+        <Token Text=":=" UId="359" />
+        <Blank Num="1" UId="360" />
+        <Access Scope="LocalVariable" UId="361">
+          <Symbol UId="362">
+            <Component Name="dataToSendOut" UId="363" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="364" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="365" />
+  <NewLine Num="1" UId="366" />
+  <Blank Num="4" UId="367" />
+  <Token Text="END_IF" UId="368" />
+  <Token Text=";" UId="369" />
+  <NewLine Num="2" UId="370" />
+  <Token Text="END_IF" UId="371" />
+  <Token Text=";" UId="372" />
+  <NewLine Num="1" UId="373" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="13" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="16" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="17" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>prepare send data</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="18" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="19" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="dataRecieved" />
+        <Component Name="Len" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="22">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="dataReady" />
+      </Symbol>
+    </Access>
+    <Part Name="Gt" UId="24">
+      <TemplateValue Name="SrcType" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="Coil" UId="25" />
+  </Parts>
+  <Wires>
+    <Wire UId="26">
+      <Powerrail />
+      <NameCon UId="24" Name="pre" />
+    </Wire>
+    <Wire UId="27">
+      <IdentCon UId="21" />
+      <NameCon UId="24" Name="in1" />
+    </Wire>
+    <Wire UId="28">
+      <IdentCon UId="22" />
+      <NameCon UId="24" Name="in2" />
+    </Wire>
+    <Wire UId="29">
+      <NameCon UId="24" Name="out" />
+      <NameCon UId="25" Name="in" />
+    </Wire>
+    <Wire UId="30">
+      <IdentCon UId="23" />
+      <NameCon UId="25" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1D" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="dataReady" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="22">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="DB_S1_iTAC_EAP" />
+        <Component Name="readLString" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="auxStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="auxStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Word</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="ID_recieved" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="30" />
+    <Call UId="31">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="STRG_VAL" Version="2.3" UId="32">
+      <TemplateValue Name="src_type" Type="Type">String</TemplateValue>
+      <TemplateValue Name="dest_type" Type="Type">UInt</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="33">
+      <Powerrail />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="21" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="Delim" />
+    </Wire>
+    <Wire UId="37">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="Number" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="Src" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="32" Name="en" />
+    </Wire>
+    <Wire UId="40">
+      <NameCon UId="31" Name="ResPart" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="41">
+      <IdentCon UId="26" />
+      <NameCon UId="32" Name="IN" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="27" />
+      <NameCon UId="32" Name="FORMAT" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="28" />
+      <NameCon UId="32" Name="P" />
+    </Wire>
+    <Wire UId="44">
+      <NameCon UId="32" Name="OUT" />
+      <IdentCon UId="29" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="24" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="25" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>extract msg ID</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="27" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="dataReady" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="station" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>''</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="25">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="DB_S1_iTAC_EAP" />
+        <Component Name="readLString" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="auxStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="auxStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>Word</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="30">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="ID_recieved" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="32" />
+    <Part Name="Ne" UId="33">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Call UId="34">
+      <CallInfo Name="EXT_DL_LS" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="STRG_VAL" Version="2.3" UId="35">
+      <TemplateValue Name="src_type" Type="Type">String</TemplateValue>
+      <TemplateValue Name="dest_type" Type="Type">UInt</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="36">
+      <Powerrail />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="37">
+      <IdentCon UId="21" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="32" Name="out" />
+      <NameCon UId="33" Name="pre" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="22" />
+      <NameCon UId="33" Name="in1" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="33" Name="in2" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="en" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="34" Name="Delim" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="34" Name="Number" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="34" Name="Src" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="34" Name="eno" />
+      <NameCon UId="35" Name="en" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="34" Name="ResPart" />
+      <IdentCon UId="27" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="28" />
+      <NameCon UId="35" Name="IN" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="29" />
+      <NameCon UId="35" Name="FORMAT" />
+    </Wire>
+    <Wire UId="49">
+      <IdentCon UId="30" />
+      <NameCon UId="35" Name="P" />
+    </Wire>
+    <Wire UId="50">
+      <NameCon UId="35" Name="OUT" />
+      <IdentCon UId="31" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="28" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="29" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>extract msg ID</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="2E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="trig" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="dataReady" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="ID_recieved" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="ID" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="id_x" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="id_x" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="id_x1" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="id_x" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="30">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>9</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="id_x9" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="32">
+      <Symbol>
+        <Component Name="exception" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="33" />
+    <Part Name="Contact" UId="34" />
+    <Part Name="Sub" UId="35" DisabledENO="true">
+      <TemplateValue Name="SrcType" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="Eq" UId="36">
+      <TemplateValue Name="SrcType" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="Coil" UId="37" />
+    <Part Name="Eq" UId="38">
+      <TemplateValue Name="SrcType" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="Coil" UId="39" />
+    <Part Name="SCoil" UId="40" />
+  </Parts>
+  <Wires>
+    <Wire UId="41">
+      <Powerrail />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="21" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="22" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="en" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="23" />
+      <NameCon UId="35" Name="in1" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="24" />
+      <NameCon UId="35" Name="in2" />
+    </Wire>
+    <Wire UId="48">
+      <NameCon UId="35" Name="eno" />
+      <NameCon UId="36" Name="pre" />
+      <NameCon UId="38" Name="pre" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="35" Name="out" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="26" />
+      <NameCon UId="36" Name="in1" />
+    </Wire>
+    <Wire UId="51">
+      <IdentCon UId="27" />
+      <NameCon UId="36" Name="in2" />
+    </Wire>
+    <Wire UId="52">
+      <NameCon UId="36" Name="out" />
+      <NameCon UId="37" Name="in" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="28" />
+      <NameCon UId="37" Name="operand" />
+    </Wire>
+    <Wire UId="54">
+      <IdentCon UId="29" />
+      <NameCon UId="38" Name="in1" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="30" />
+      <NameCon UId="38" Name="in2" />
+    </Wire>
+    <Wire UId="56">
+      <NameCon UId="38" Name="out" />
+      <NameCon UId="39" Name="in" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="31" />
+      <NameCon UId="39" Name="operand" />
+    </Wire>
+    <Wire UId="58">
+      <NameCon UId="39" Name="out" />
+      <NameCon UId="40" Name="in" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="32" />
+      <NameCon UId="40" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="32" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="33" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>msg ID type</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="35" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="id_x1" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="22">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="DB_S1_iTAC_EAP" />
+        <Component Name="readLString" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>'0'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="pass" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="pass_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="30">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="31">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>'0'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="32">
+      <Symbol>
+        <Component Name="fail" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="33">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="34" />
+    <Call UId="35">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="Eq" UId="36">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Part Name="SCoil" UId="37" />
+    <Part Name="Coil" UId="38" />
+    <Part Name="Ne" UId="39">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Part Name="SCoil" UId="40" />
+    <Part Name="Coil" UId="41" />
+  </Parts>
+  <Wires>
+    <Wire UId="42">
+      <Powerrail />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="21" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="en" />
+    </Wire>
+    <Wire UId="45">
+      <IdentCon UId="22" />
+      <NameCon UId="35" Name="Delim" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="23" />
+      <NameCon UId="35" Name="Number" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="24" />
+      <NameCon UId="35" Name="Src" />
+    </Wire>
+    <Wire UId="48">
+      <NameCon UId="35" Name="eno" />
+      <NameCon UId="36" Name="pre" />
+      <NameCon UId="39" Name="pre" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="35" Name="ResPart" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="26" />
+      <NameCon UId="36" Name="in1" />
+    </Wire>
+    <Wire UId="51">
+      <IdentCon UId="27" />
+      <NameCon UId="36" Name="in2" />
+    </Wire>
+    <Wire UId="52">
+      <NameCon UId="36" Name="out" />
+      <NameCon UId="37" Name="in" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="28" />
+      <NameCon UId="37" Name="operand" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="37" Name="out" />
+      <NameCon UId="38" Name="in" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="29" />
+      <NameCon UId="38" Name="operand" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="30" />
+      <NameCon UId="39" Name="in1" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="31" />
+      <NameCon UId="39" Name="in2" />
+    </Wire>
+    <Wire UId="58">
+      <NameCon UId="39" Name="out" />
+      <NameCon UId="40" Name="in" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="32" />
+      <NameCon UId="40" Name="operand" />
+    </Wire>
+    <Wire UId="60">
+      <NameCon UId="40" Name="out" />
+      <NameCon UId="41" Name="in" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="33" />
+      <NameCon UId="41" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="36" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="37" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="39" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>pass or fail</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="3C" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="id_x1" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="station" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>''</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="25">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>3</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="DB_S1_iTAC_EAP" />
+        <Component Name="readLString" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>'0'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="30">
+      <Symbol>
+        <Component Name="pass" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="pass_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="32">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="33">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>'0'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="34">
+      <Symbol>
+        <Component Name="fail" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="35">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="36" />
+    <Part Name="Ne" UId="37">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Call UId="38">
+      <CallInfo Name="EXT_DL_LS" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="Eq" UId="39">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Part Name="SCoil" UId="40" />
+    <Part Name="Coil" UId="41" />
+    <Part Name="Ne" UId="42">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Part Name="SCoil" UId="43" />
+    <Part Name="Coil" UId="44" />
+  </Parts>
+  <Wires>
+    <Wire UId="45">
+      <Powerrail />
+      <NameCon UId="36" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="21" />
+      <NameCon UId="36" Name="operand" />
+    </Wire>
+    <Wire UId="47">
+      <NameCon UId="36" Name="out" />
+      <NameCon UId="37" Name="pre" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="22" />
+      <NameCon UId="37" Name="in1" />
+    </Wire>
+    <Wire UId="49">
+      <IdentCon UId="23" />
+      <NameCon UId="37" Name="in2" />
+    </Wire>
+    <Wire UId="50">
+      <NameCon UId="37" Name="out" />
+      <NameCon UId="38" Name="en" />
+    </Wire>
+    <Wire UId="51">
+      <IdentCon UId="24" />
+      <NameCon UId="38" Name="Delim" />
+    </Wire>
+    <Wire UId="52">
+      <IdentCon UId="25" />
+      <NameCon UId="38" Name="Number" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="26" />
+      <NameCon UId="38" Name="Src" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="38" Name="eno" />
+      <NameCon UId="39" Name="pre" />
+      <NameCon UId="42" Name="pre" />
+    </Wire>
+    <Wire UId="55">
+      <NameCon UId="38" Name="ResPart" />
+      <IdentCon UId="27" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="28" />
+      <NameCon UId="39" Name="in1" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="29" />
+      <NameCon UId="39" Name="in2" />
+    </Wire>
+    <Wire UId="58">
+      <NameCon UId="39" Name="out" />
+      <NameCon UId="40" Name="in" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="30" />
+      <NameCon UId="40" Name="operand" />
+    </Wire>
+    <Wire UId="60">
+      <NameCon UId="40" Name="out" />
+      <NameCon UId="41" Name="in" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="31" />
+      <NameCon UId="41" Name="operand" />
+    </Wire>
+    <Wire UId="62">
+      <IdentCon UId="32" />
+      <NameCon UId="42" Name="in1" />
+    </Wire>
+    <Wire UId="63">
+      <IdentCon UId="33" />
+      <NameCon UId="42" Name="in2" />
+    </Wire>
+    <Wire UId="64">
+      <NameCon UId="42" Name="out" />
+      <NameCon UId="43" Name="in" />
+    </Wire>
+    <Wire UId="65">
+      <IdentCon UId="34" />
+      <NameCon UId="43" Name="operand" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="43" Name="out" />
+      <NameCon UId="44" Name="in" />
+    </Wire>
+    <Wire UId="67">
+      <IdentCon UId="35" />
+      <NameCon UId="44" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3D" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="40" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="41" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>pass or fail</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="42" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="43" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="id_x9" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="id_x1" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="25">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="dataRecieved" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>Word</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="30">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="retval" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="32">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="33">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>3</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="34">
+      <Symbol>
+        <Component Name="dataRecieved" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="35">
+      <Symbol>
+        <Component Name="rettext_o" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="36" />
+    <Part Name="Contact" UId="37" />
+    <Part Name="Contact" UId="38" />
+    <Part Name="O" UId="39">
+      <TemplateValue Name="Card" Type="Cardinality">3</TemplateValue>
+    </Part>
+    <Call UId="40">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="STRG_VAL" Version="2.3" UId="41">
+      <TemplateValue Name="src_type" Type="Type">String</TemplateValue>
+      <TemplateValue Name="dest_type" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Call UId="42">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="43">
+      <Powerrail />
+      <NameCon UId="36" Name="in" />
+      <NameCon UId="37" Name="in" />
+      <NameCon UId="38" Name="in" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="21" />
+      <NameCon UId="36" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="36" Name="out" />
+      <NameCon UId="39" Name="in1" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="22" />
+      <NameCon UId="37" Name="operand" />
+    </Wire>
+    <Wire UId="47">
+      <NameCon UId="37" Name="out" />
+      <NameCon UId="39" Name="in2" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="23" />
+      <NameCon UId="38" Name="operand" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="38" Name="out" />
+      <NameCon UId="39" Name="in3" />
+    </Wire>
+    <Wire UId="50">
+      <NameCon UId="39" Name="out" />
+      <NameCon UId="40" Name="en" />
+      <NameCon UId="42" Name="en" />
+    </Wire>
+    <Wire UId="51">
+      <IdentCon UId="24" />
+      <NameCon UId="40" Name="Delim" />
+    </Wire>
+    <Wire UId="52">
+      <IdentCon UId="25" />
+      <NameCon UId="40" Name="Number" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="26" />
+      <NameCon UId="40" Name="Src" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="40" Name="eno" />
+      <NameCon UId="41" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <NameCon UId="40" Name="ResPart" />
+      <IdentCon UId="27" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="28" />
+      <NameCon UId="41" Name="IN" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="29" />
+      <NameCon UId="41" Name="FORMAT" />
+    </Wire>
+    <Wire UId="58">
+      <IdentCon UId="30" />
+      <NameCon UId="41" Name="P" />
+    </Wire>
+    <Wire UId="59">
+      <NameCon UId="41" Name="OUT" />
+      <IdentCon UId="31" />
+    </Wire>
+    <Wire UId="60">
+      <IdentCon UId="32" />
+      <NameCon UId="42" Name="Delim" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="33" />
+      <NameCon UId="42" Name="Number" />
+    </Wire>
+    <Wire UId="62">
+      <IdentCon UId="34" />
+      <NameCon UId="42" Name="Src" />
+    </Wire>
+    <Wire UId="63">
+      <NameCon UId="42" Name="ResPart" />
+      <IdentCon UId="35" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="44" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="45" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="46" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="47" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="48" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>error value and description extraction</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="49" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="4A" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="id_x9" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="id_x1" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="station" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="25">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>''</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="26">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>3</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="dataRecieved" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="30">
+      <Symbol>
+        <Component Name="retValStr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="31">
+      <Constant>
+        <ConstantType>Word</ConstantType>
+        <ConstantValue>0</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="32">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>1</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="33">
+      <Symbol>
+        <Component Name="retval" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="34">
+      <Symbol>
+        <Component Name="station" />
+      </Symbol>
+    </Access>
+    <Access Scope="LiteralConstant" UId="35">
+      <Constant>
+        <ConstantType>String</ConstantType>
+        <ConstantValue>''</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="36">
+      <Constant>
+        <ConstantType>Char</ConstantType>
+        <ConstantValue>';'</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="37">
+      <Constant>
+        <ConstantType>UInt</ConstantType>
+        <ConstantValue>4</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LocalVariable" UId="38">
+      <Symbol>
+        <Component Name="dataRecieved" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="39">
+      <Symbol>
+        <Component Name="rettext_o" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="40" />
+    <Part Name="Contact" UId="41" />
+    <Part Name="Contact" UId="42" />
+    <Part Name="O" UId="43">
+      <TemplateValue Name="Card" Type="Cardinality">3</TemplateValue>
+    </Part>
+    <Part Name="Ne" UId="44">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Call UId="45">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+    <Part Name="STRG_VAL" Version="2.3" UId="46">
+      <TemplateValue Name="src_type" Type="Type">String</TemplateValue>
+      <TemplateValue Name="dest_type" Type="Type">UInt</TemplateValue>
+    </Part>
+    <Part Name="Ne" UId="47">
+      <TemplateValue Name="SrcType" Type="Type">String</TemplateValue>
+    </Part>
+    <Call UId="48">
+      <CallInfo Name="EXT_DL_LS_1" BlockType="FC">
+        <Parameter Name="Delim" Section="Input" Type="Char" />
+        <Parameter Name="Number" Section="Input" Type="UInt" />
+        <Parameter Name="Src" Section="Input" Type="&quot;t_LString&quot;" />
+        <Parameter Name="ResPart" Section="Output" Type="String" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="49">
+      <Powerrail />
+      <NameCon UId="40" Name="in" />
+      <NameCon UId="41" Name="in" />
+      <NameCon UId="42" Name="in" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="21" />
+      <NameCon UId="40" Name="operand" />
+    </Wire>
+    <Wire UId="51">
+      <NameCon UId="40" Name="out" />
+      <NameCon UId="43" Name="in1" />
+    </Wire>
+    <Wire UId="52">
+      <IdentCon UId="22" />
+      <NameCon UId="41" Name="operand" />
+    </Wire>
+    <Wire UId="53">
+      <NameCon UId="41" Name="out" />
+      <NameCon UId="43" Name="in2" />
+    </Wire>
+    <Wire UId="54">
+      <IdentCon UId="23" />
+      <NameCon UId="42" Name="operand" />
+    </Wire>
+    <Wire UId="55">
+      <NameCon UId="42" Name="out" />
+      <NameCon UId="43" Name="in3" />
+    </Wire>
+    <Wire UId="56">
+      <NameCon UId="43" Name="out" />
+      <NameCon UId="44" Name="pre" />
+      <NameCon UId="47" Name="pre" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="24" />
+      <NameCon UId="44" Name="in1" />
+    </Wire>
+    <Wire UId="58">
+      <IdentCon UId="25" />
+      <NameCon UId="44" Name="in2" />
+    </Wire>
+    <Wire UId="59">
+      <NameCon UId="44" Name="out" />
+      <NameCon UId="45" Name="en" />
+    </Wire>
+    <Wire UId="60">
+      <IdentCon UId="26" />
+      <NameCon UId="45" Name="Delim" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="27" />
+      <NameCon UId="45" Name="Number" />
+    </Wire>
+    <Wire UId="62">
+      <IdentCon UId="28" />
+      <NameCon UId="45" Name="Src" />
+    </Wire>
+    <Wire UId="63">
+      <NameCon UId="45" Name="eno" />
+      <NameCon UId="46" Name="en" />
+    </Wire>
+    <Wire UId="64">
+      <NameCon UId="45" Name="ResPart" />
+      <IdentCon UId="29" />
+    </Wire>
+    <Wire UId="65">
+      <IdentCon UId="30" />
+      <NameCon UId="46" Name="IN" />
+    </Wire>
+    <Wire UId="66">
+      <IdentCon UId="31" />
+      <NameCon UId="46" Name="FORMAT" />
+    </Wire>
+    <Wire UId="67">
+      <IdentCon UId="32" />
+      <NameCon UId="46" Name="P" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="46" Name="OUT" />
+      <IdentCon UId="33" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="34" />
+      <NameCon UId="47" Name="in1" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="35" />
+      <NameCon UId="47" Name="in2" />
+    </Wire>
+    <Wire UId="71">
+      <NameCon UId="47" Name="out" />
+      <NameCon UId="48" Name="en" />
+    </Wire>
+    <Wire UId="72">
+      <IdentCon UId="36" />
+      <NameCon UId="48" Name="Delim" />
+    </Wire>
+    <Wire UId="73">
+      <IdentCon UId="37" />
+      <NameCon UId="48" Name="Number" />
+    </Wire>
+    <Wire UId="74">
+      <IdentCon UId="38" />
+      <NameCon UId="48" Name="Src" />
+    </Wire>
+    <Wire UId="75">
+      <NameCon UId="48" Name="ResPart" />
+      <IdentCon UId="39" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4B" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="4C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="4E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="4F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>error value and description extraction</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="50" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="51" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="trig" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="pass" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="fail" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="exception" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="timeout_value" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="toutErr" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="27" />
+    <Part Name="Contact" UId="28">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Contact" UId="29">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Contact" UId="30">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="TON" Version="1.0" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="Timeout" />
+      </Instance>
+      <TemplateValue Name="time_type" Type="Type">Time</TemplateValue>
+    </Part>
+    <Part Name="Coil" UId="33" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="27" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="IN" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="25" />
+      <NameCon UId="31" Name="PT" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="31" Name="Q" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="31" Name="ET" />
+      <OpenCon UId="34" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="52" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="53" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="54" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="55" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="56" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>timeout</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="57" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="58" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="toutErr" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="errorText" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="iPA_iTac_timeout" />
+        <Component Name="SIG" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="timeout_err" />
+      </Symbol>
+    </Access>
+    <Part Name="Program_Alarm" Version="1.0" UId="25">
+      <Instance Scope="LocalVariable" UId="26">
+        <Component Name="iPA_iTac_timeout" />
+      </Instance>
+    </Part>
+    <Part Name="Contact" UId="27" />
+    <Part Name="Coil" UId="28" />
+  </Parts>
+  <Wires>
+    <Wire UId="41">
+      <Powerrail />
+      <NameCon UId="25" Name="en" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="21" />
+      <NameCon UId="25" Name="SIG" />
+    </Wire>
+    <Wire UId="43">
+      <OpenCon UId="29" />
+      <NameCon UId="25" Name="TIMESTAMP" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="22" />
+      <NameCon UId="25" Name="SD_1" />
+    </Wire>
+    <Wire UId="45">
+      <OpenCon UId="30" />
+      <NameCon UId="25" Name="SD_2" />
+    </Wire>
+    <Wire UId="46">
+      <OpenCon UId="31" />
+      <NameCon UId="25" Name="SD_3" />
+    </Wire>
+    <Wire UId="47">
+      <OpenCon UId="32" />
+      <NameCon UId="25" Name="SD_4" />
+    </Wire>
+    <Wire UId="48">
+      <OpenCon UId="33" />
+      <NameCon UId="25" Name="SD_5" />
+    </Wire>
+    <Wire UId="49">
+      <OpenCon UId="34" />
+      <NameCon UId="25" Name="SD_6" />
+    </Wire>
+    <Wire UId="50">
+      <OpenCon UId="35" />
+      <NameCon UId="25" Name="SD_7" />
+    </Wire>
+    <Wire UId="51">
+      <OpenCon UId="36" />
+      <NameCon UId="25" Name="SD_8" />
+    </Wire>
+    <Wire UId="52">
+      <OpenCon UId="37" />
+      <NameCon UId="25" Name="SD_9" />
+    </Wire>
+    <Wire UId="53">
+      <OpenCon UId="38" />
+      <NameCon UId="25" Name="SD_10" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="25" Name="eno" />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="55">
+      <NameCon UId="25" Name="Error" />
+      <OpenCon UId="39" />
+    </Wire>
+    <Wire UId="56">
+      <NameCon UId="25" Name="Status" />
+      <OpenCon UId="40" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="27" Name="operand" />
+    </Wire>
+    <Wire UId="58">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="24" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="59" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="5C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="5D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>raise timeout error</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="5F" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="fail_local" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="exception" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="errorText" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="rettext_o" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="25" />
+    <Part Name="Contact" UId="26" />
+    <Part Name="O" UId="27">
+      <TemplateValue Name="Card" Type="Cardinality">2</TemplateValue>
+    </Part>
+    <Part Name="Program_Alarm" Version="1.0" UId="28">
+      <Instance Scope="LocalVariable" UId="29">
+        <Component Name="iPA_iTac_fail" />
+      </Instance>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="41">
+      <Powerrail />
+      <NameCon UId="28" Name="en" />
+      <NameCon UId="25" Name="in" />
+      <NameCon UId="26" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="21" />
+      <NameCon UId="25" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="25" Name="out" />
+      <NameCon UId="27" Name="in1" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="22" />
+      <NameCon UId="26" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="26" Name="out" />
+      <NameCon UId="27" Name="in2" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="SIG" />
+    </Wire>
+    <Wire UId="47">
+      <OpenCon UId="30" />
+      <NameCon UId="28" Name="TIMESTAMP" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="23" />
+      <NameCon UId="28" Name="SD_1" />
+    </Wire>
+    <Wire UId="49">
+      <IdentCon UId="24" />
+      <NameCon UId="28" Name="SD_2" />
+    </Wire>
+    <Wire UId="50">
+      <OpenCon UId="31" />
+      <NameCon UId="28" Name="SD_3" />
+    </Wire>
+    <Wire UId="51">
+      <OpenCon UId="32" />
+      <NameCon UId="28" Name="SD_4" />
+    </Wire>
+    <Wire UId="52">
+      <OpenCon UId="33" />
+      <NameCon UId="28" Name="SD_5" />
+    </Wire>
+    <Wire UId="53">
+      <OpenCon UId="34" />
+      <NameCon UId="28" Name="SD_6" />
+    </Wire>
+    <Wire UId="54">
+      <OpenCon UId="35" />
+      <NameCon UId="28" Name="SD_7" />
+    </Wire>
+    <Wire UId="55">
+      <OpenCon UId="36" />
+      <NameCon UId="28" Name="SD_8" />
+    </Wire>
+    <Wire UId="56">
+      <OpenCon UId="37" />
+      <NameCon UId="28" Name="SD_9" />
+    </Wire>
+    <Wire UId="57">
+      <OpenCon UId="38" />
+      <NameCon UId="28" Name="SD_10" />
+    </Wire>
+    <Wire UId="58">
+      <NameCon UId="28" Name="Error" />
+      <OpenCon UId="39" />
+    </Wire>
+    <Wire UId="59">
+      <NameCon UId="28" Name="Status" />
+      <OpenCon UId="40" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="60" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="61" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="62" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="63" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="64" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sl-SI</Culture>
+                  <Text>raise fail error</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="65" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="66" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="67" CompositionName="Items">
+            <AttributeList>
+              <Culture>sl-SI</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="68" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

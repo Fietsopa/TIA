@@ -1,0 +1,20 @@
+﻿FUNCTION "IOSTREAM_CLEAR_1" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      IN : "t_IOStream";
+   END_VAR
+
+
+BEGIN
+	"STREAM_CLEAR_1"(#IN.I);
+	
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	
+	"STREAM_CLEAR_1"(#IN.O);
+	
+END_FUNCTION
+

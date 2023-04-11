@@ -1,0 +1,47 @@
+﻿FUNCTION "FC_LSreadUntilHeaderFooter" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      header_I : String;
+      footer_I : String;
+   END_VAR
+
+   VAR_OUTPUT 
+      result : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      IN : "t_Stream";
+      OUT : "t_LString";
+   END_VAR
+
+   VAR_TEMP 
+      headerPos : UInt;
+      headerLength : Int;
+      recieved : Bool;
+   END_VAR
+
+
+BEGIN
+	// Read until footer come
+	"STREAM_READ_LS_UNTIL_S_1"(IN := #IN,
+	                         OUT := #OUT,
+	                         S := #footer_I);
+	IF NOT ENO THEN
+	    RETURN;
+	END_IF;
+	
+	// Finder header pos
+	#headerPos := "FIND_LS_S_1"(IN1 := #IN.LString, IN2 := #header_I);
+	#headerLength := LEN(#header_I);
+	#headerPos := #headerPos + INT_TO_UINT(#headerLength);
+	    
+	// Remove header
+	"REMOVE_LS_1"(L := #headerPos, IN := #OUT);
+	
+	// Test other reader in final Lstring
+	#headerPos := "FIND_LS_S_1"(IN1 := #OUT, IN2 := #header_I);
+	
+	#result := (#headerPos <= 0);
+END_FUNCTION
+
